@@ -1,0 +1,352 @@
+﻿@model List<PDPIAS_STORE.Models.labTech.GlasswareOrder>
+@{
+    Layout = "~/VieWs/Shared/lebTech_Dashbord.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<style>
+    :root {
+        --primary-blue: #2563eb;
+        --hover-blue: #1d4ed8;
+        --glassmorph: rgba(255, 255, 255, 0.95);
+        --shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    }
+
+    .card {
+        border: none;
+        border-radius: 16px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--glassmorph);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+    }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-img-top {
+        height: 220px;
+        object-fit: cover;
+        border-radius: 16px 16px 0 0;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+
+    .card-text {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin-bottom: 0.75rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background: rgba(241, 245, 249, 0.5);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        .card-text i {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-blue) 0%, #1d4ed8 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, var(--hover-blue) 0%, #1e3f8f 100%);
+        }
+
+        .btn-primary i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover i {
+            transform: translateX(3px);
+        }
+
+    /* Modern Modal Styling */
+    .modal-content {
+        border-radius: 16px;
+        border: none;
+        box-shadow: var(--shadow);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .form-control {
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+    .modal-content {
+        border-radius: 20px;
+        border: none;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-bottom: 1px solid rgba(203, 213, 225, 0.3);
+        border-radius: 20px 20px 0 0;
+        padding: 1.2rem;
+    }
+
+    .modal-title {
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 1.3rem;
+        letter-spacing: -0.5px;
+    }
+
+    .btn-close {
+        filter: brightness(0.5);
+        transition: all 0.3s ease;
+    }
+
+        .btn-close:hover {
+            transform: rotate(90deg);
+            filter: brightness(1);
+        }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .form-control {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(241, 245, 249, 0.4);
+    }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: white;
+        }
+
+    .modal-footer {
+        border-top: 1px solid rgba(203, 213, 225, 0.3);
+        padding: 1rem 1.5rem;
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+    /* Optional: Add icons to labels */
+    .form-label::before {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+    }
+
+    #glassName-label::before {
+        background-image: url('flask-icon.svg');
+    }
+
+    #glassPrice-label::before {
+        background-image: url('price-tag-icon.svg');
+    }
+
+    #orderQty-label::before {
+        background-image: url('number-icon.svg');
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<main class="main-content" id="mainContent">
+    <section id="Glassware-details-section" class="content-section">
+        <section id="Glassware-details-section" class="content-section">
+            <div class="page-header">
+                <h1 class="page-title">Glassware Order</h1>
+            </div>
+
+            <!-- Card Grid Layout -->
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                    @* Repeat this block for each glassware item *@
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col">
+                            <div class="card h-100 shadow">
+                                <img src="@Url.Content(item.imagePath)" class="card-img-top" alt="@item.glasswareName">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.glasswareName</h5>
+                                    <p class="card-text">
+                                        <i class="fas fa-ruler-combined"></i>
+                                        Size: @item.glasswareSize
+                                    </p>
+                                    <p class="card-text">
+                                        <i class="fas fa-cubes"></i>
+                                        Available: @item.current_quantity
+                                    </p>
+
+                                    <button class="btn btn-primary"
+                                            onclick="openOrderModal('@item.glasswareName', '@item.glasswareSize', '@item.glasswareID')">
+                                        Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                    <!-- Order Modal -->
+                    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form class="modal-content" id="orderForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="orderModalLabel">Order Glassware</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" id="glassId">
+                                    <div class="mb-3">
+                                        <label for="glassName" class="form-label">Glassware Name</label>
+                                        <input type="text" class="form-control" id="glassName" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="glassPrice" class="form-label">Price</label>
+                                        <input type="text" class="form-control" id="glassPrice" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="orderQty" class="form-label">Quantity</label>
+                                        <input type="number" class="form-control" id="orderQty" min="1" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Confirm Order</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </section>
+</main>
+
+<script>
+    function openOrderModal(name, price, id) {
+        document.getElementById("glassId").value = id;
+        document.getElementById("glassName").value = name;
+        document.getElementById("glassPrice").value = price;
+        document.getElementById("orderQty").value = "";
+
+        const modal = new bootstrap.Modal(document.getElementById("orderModal"));
+        modal.show();
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const orderData = {
+            id: document.getElementById("glassId").value,
+            name: document.getElementById("glassName").value,
+            price: document.getElementById("glassPrice").value,
+            quantity: document.getElementById("orderQty").value
+        };
+
+        console.log("Order Placed:", orderData);
+        alert(`Order placed for ${orderData.quantity} x ${orderData.name}`);
+        bootstrap.Modal.getInstance(document.getElementById("orderModal")).hide();
+    });
+</script>

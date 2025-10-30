@@ -1,0 +1,384 @@
+﻿
+@model PDPIAS_STORE.Models.Pricipal.IndexViewModel
+@{
+    Layout = "~/VieWs/Shared/principal_dashboard.cshtml";
+    ViewBag.Title = "Index";
+}
+
+
+<main class="main-content" id="mainContent">
+    <!-- Dashboard Overview Section -->
+    <section id="dashboard-section" class="content-section">
+        <div class="page-header">
+            <h1 class="page-title">Dashboard Overview</h1>
+            <div>
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-download me-1"></i> Export
+                </button>
+            </div>
+        </div>
+
+        <p class="page-description">
+            Welcome back, Principal. Here's what's happening with your lab
+            inventory today.
+        </p>
+
+        <!-- Stats Cards Row -->
+        <div class="row">
+            <div class="col-md-6 col-lg-3 fade-in">
+                <div class="card stat-card">
+                    <div class="stat-icon"
+                         style="background-color: #e0e7ff; color: #4f46e5">
+                        <i class="bi bi-moisture"></i>
+                    </div>
+                    <h3 class="stat-value">@Model.TotalChamicalRequestes</h3>
+                    <p class="stat-label">Overall Chemical Dealings</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 fade-in" style="animation-delay: 0.1s">
+                <div class="card stat-card">
+                    <div class="stat-icon"
+                         style="background-color: #d1fae5; color: #059669">
+                        <i class="bi bi-cup"></i>
+                    </div>
+                    <h3 class="stat-value">@Model.TotalGlassWareRequest</h3>
+                    <p class="stat-label">Glassware Items</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 fade-in" style="animation-delay: 0.2s">
+                <div class="card stat-card">
+                    <div class="stat-icon"
+                         style="background-color: #fef3c7; color: #d97706">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
+                    <h3 class="stat-value">@Model.PendingRequest</h3>
+                    <p class="stat-label">Pending Requests</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 fade-in" style="animation-delay: 0.3s">
+                <div class="card stat-card">
+                    <div class="stat-icon"
+                         style="background-color: #e0f2fe; color: #0369a1">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="stat-value">@Model.LabTechnician</h3>
+                    <p class="stat-label">Total Employees</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Department-wise Stats -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span>Department-wise Inventory</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            @foreach (var department in Model.DepartmentInvetoeys)
+                            {
+                                <div class="col-md-6 col-lg-3 mb-3">
+                                    <div class="card department-card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@department.Name Department</h5>
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <p class="mb-1 text-muted">Chemicals</p>
+                                                    <h4 class="mb-0">@department.Chemicals</h4>
+                                                </div>
+                                                <div>
+                                                    <p class="mb-1 text-muted">Glassware</p>
+                                                    <h4 class="mb-0">@department.GlassWare</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts and Quick Actions Row -->
+        @*
+           *  Add here just link over here
+       *@
+        <div class="row">
+            <div class="col-lg-8 fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <span>Monthly Usage Trends</span>
+                        <div class="dropdown d-inline-block">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                    type="button"
+                                    data-bs-toggle="dropdown">
+                                Last 6 Months
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Last Month</a></li>
+                                <li><a class="dropdown-item" href="#">Last 3 Months</a></li>
+                                <li><a class="dropdown-item" href="#">Last 6 Months</a></li>
+                                <li><a class="dropdown-item" href="#">Last Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="usageChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 fade-in" style="animation-delay: 0.1s">
+                <div class="card">
+                    <div class="card-header">
+                        <span>Quick Actions</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-actions">
+                            <a href="#chemical-details-section" class="action-btn">
+                                <i class="bi bi-plus-circle"></i>
+                                <span class="action-label">Add Chemical</span>
+                            </a>
+                            <a href="#glassware-details-section" class="action-btn">
+                                <i class="bi bi-plus-square"></i>
+                                <span class="action-label">Add Glassware</span>
+                            </a>
+                            <a href="#reports-section" class="action-btn">
+                                <i class="bi bi-file-earmark-text"></i>
+                                <span class="action-label">Generate Report</span>
+                            </a>
+                            <a href="#user-management-section" class="action-btn">
+                                <i class="bi bi-person-plus"></i>
+                                <span class="action-label">Add User</span>
+                            </a>
+                            <a href="#"
+                               class="action-btn"
+                               data-bs-toggle="modal"
+                               data-bs-target="#createAlertModal">
+                                <i class="bi bi-bell"></i>
+                                <span class="action-label">Create Alert</span>
+                            </a>
+                            <a href="#" class="action-btn">
+                                <i class="bi bi-gear"></i>
+                                <span class="action-label">Settings</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity and Pending Requests Row -->
+        <div class="row">
+            <div class="col-lg-6 fade-in" style="animation-delay: 0.2s">
+                <div class="card">
+                    <div class="card-header">
+                        <span>Recent Activity</span>
+                        <a href="#" class="btn btn-sm btn-link">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="bi bi-flask"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">
+                                    New chemical "Sodium Hydroxide" added to Chemistry Dept
+                                </div>
+                                <div class="activity-time">10 minutes ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="bi bi-journal-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">
+                                    Request #245 approved for Physics Lab
+                                </div>
+                                <div class="activity-time">1 hour ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">
+                                    Low stock alert for "Beakers 250ml" in Biology Dept
+                                </div>
+                                <div class="activity-time">3 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">
+                                    New lab technician registered for Research Lab
+                                </div>
+                                <div class="activity-time">Yesterday</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 fade-in" style="animation-delay: 0.3s">
+                <div class="card">
+                    <div class="card-header">
+                        <span>Pending Requests</span>
+                        <a href="#request-tracking-section" class="btn btn-sm btn-link">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Request ID</th>
+                                        <th>Item</th>
+                                        <th>Department</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var row in Model.PendingRequests)
+                                     {
+                                          <tr>
+                                              <td>@row.SrNo</td>
+                                              <td>@row.Item</td>
+                                              <td>@row.Department</td>
+                                              <td>
+                                                  @*
+                                                      * chnage status latter on with -1 0 1
+                                                      * -1 is known as rejected
+                                                      * 0 for aprove
+                                                      * 1 pending
+                                                  *@
+                                                  @if (row.Status == "Pending")
+                                                  {
+                                                      <span class="badge badge-pending">Pending</span>
+                                                  }
+                                                  else if (row.Status == "Approved")
+                                                  {
+                                                      <span class="badge badge-approved">Approved</span>
+                                                   }
+                                                   else if(row.Status == "Rejected")
+                                                   {
+                                                      <span class="badge badge-rejected">Rejected</span>
+                                                   }
+                                              </td>
+                                          </tr>  
+                                     }
+                                    <tr>
+                                        <td>#256</td>
+                                        <td>Hydrochloric Acid</td>
+                                        <td>Chemistry</td>
+                                        <td>
+                                            <span class="badge badge-pending">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#255</td>
+                                        <td>Beakers (Set of 5)</td>
+                                        <td>Physics</td>
+                                        <td>
+                                            <span class="badge badge-pending">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#254</td>
+                                        <td>Ethanol 1L</td>
+                                        <td>Research</td>
+                                        <td>
+                                            <span class="badge badge-approved">Approved</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#253</td>
+                                        <td>Bunsen Burners</td>
+                                        <td>Biology</td>
+                                        <td>
+                                            <span class="badge badge-rejected">Rejected</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+<script>
+    function initCharts() {
+
+        let months = @Html.Raw(Json.Encode(Model.Months))
+        let Datasets = @Html.Raw(Json.Encode(Model.MonthyCharts))
+
+
+        const ChartConfig = {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: Datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: "top" },
+                    tooltip: { mode: "index", intersect: false }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { drawBorder: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+
+        };
+
+        console.log(Datasets);
+        // Usage Chart
+        const usageCtx = document.getElementById("usageChart")?.getContext("2d");
+        if (usageCtx) {
+            new Chart(usageCtx, ChartConfig);
+        }
+
+
+    }
+
+    //load chars when dom loaded
+
+    document.addEventListener("DOMContentLoaded", function () {
+        initCharts();
+
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener("resize", function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(enhanceTables, 250);
+        });
+    });
+</script>
+
+
+

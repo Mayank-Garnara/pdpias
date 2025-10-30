@@ -1,0 +1,94 @@
+﻿@{
+    Layout = "~/VieWs/Shared/principal_dashboard.cshtml";
+    ViewBag.Title = "ChemicalTracking";
+}
+
+<main class="main-content" id="mainContent">
+    <section id="chemical-tracking-section"
+             class="content-section">
+        <div class="page-header">
+            <h1 class="page-title">Chemical Tracking</h1>
+            <div>
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-download me-1"></i> Export
+                </button>
+            </div>
+        </div>
+
+        <p class="page-description">
+            Track all chemicals across departments with detailed usage
+            information.
+        </p>
+
+        <div class="card">
+            <div class="card-header">
+                <span>Department-wise Chemical Tracking</span>
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown">
+                        All Departments
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">All Departments</a></li>
+                        <li><a class="dropdown-item" href="#">Chemistry</a></li>
+                        <li><a class="dropdown-item" href="#">Physics</a></li>
+                        <li><a class="dropdown-item" href="#">Biology</a></li>
+                        <li><a class="dropdown-item" href="#">Research Lab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Chemical Name</th>
+                                <th>Department</th>
+                                <th>Total Quantity</th>
+                                <th>Issued</th>
+                                <th>Remaining</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sodium Hydroxide</td>
+                                <td>Chemistry</td>
+                                <td>500 ml</td>
+                                <td>320 ml</td>
+                                <td>180 ml</td>
+                                <td><span class="badge bg-warning">Low Stock</span></td>
+                            </tr>
+                            <tr>
+                                <td>Hydrochloric Acid</td>
+                                <td>Physics</td>
+                                <td>1 L</td>
+                                <td>400 ml</td>
+                                <td>600 ml</td>
+                                <td><span class="badge bg-success">In Stock</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ethanol</td>
+                                <td>Biology</td>
+                                <td>2 L</td>
+                                <td>1.5 L</td>
+                                <td>500 ml</td>
+                                <td><span class="badge bg-warning">Low Stock</span></td>
+                            </tr>
+                            <tr>
+                                <td>Acetone</td>
+                                <td>Research Lab</td>
+                                <td>1.5 L</td>
+                                <td>800 ml</td>
+                                <td>700 ml</td>
+                                <td><span class="badge bg-success">In Stock</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

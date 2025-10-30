@@ -1,0 +1,140 @@
+﻿@model PDPIAS_STORE.Models.Pricipal.RequestTrackingViewModel
+
+@{
+    Layout = "~/VieWs/Shared/principal_dashboard.cshtml";
+    ViewBag.Title = "RequestTracking";
+}
+
+<main class="main-content" id="mainContent">
+    <section id="request-tracking-section"
+             class="content-section">
+        <div class="page-header">
+            <h1 class="page-title">Request Tracking</h1>
+            <div>
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-download me-1"></i> Export
+                </button>
+                <button class="btn btn-sm btn-primary ms-2">
+                    <i class="bi bi-plus-circle me-1"></i> New Request
+                </button>
+            </div>
+        </div>
+
+        <p class="page-description">
+            Track all requests for chemicals and glassware from various
+            departments.
+        </p>
+
+        <div class="card">
+            <div class="card-header">
+                <span>All Requests</span>
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown">
+                        All Status
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">All Status</a></li>
+                        <li><a class="dropdown-item" href="#">Pending</a></li>
+                        <li><a class="dropdown-item" href="#">Approved</a></li>
+                        <li><a class="dropdown-item" href="#">Rejected</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Requested By</th>
+                                <th>Department</th>
+                                <th>Item Type</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.AllRequests)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.RequestedBy</td>
+                                    <td>@item.Department</td>
+                                    <td>@item.ItemType</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Date</td>
+                                    <td><span class="badge badge-pending">@item.Status</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-success me-1">
+                                            Approve
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            Reject
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td>#255</td>
+                                <td>Lab 3</td>
+                                <td>Physics</td>
+                                <td>Glassware</td>
+                                <td>Beakers (Set of 5)</td>
+                                <td>2 Sets</td>
+                                <td>09-Apr-2025</td>
+                                <td><span class="badge badge-pending">Pending</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-success me-1">
+                                        Approve
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        Reject
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#254</td>
+                                <td>Research Team</td>
+                                <td>Research Lab</td>
+                                <td>Chemical</td>
+                                <td>Ethanol 1L</td>
+                                <td>1 L</td>
+                                <td>08-Apr-2025</td>
+                                <td><span class="badge badge-approved">Approved</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-secondary" disabled>
+                                        Completed
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#253</td>
+                                <td>Lab 2</td>
+                                <td>Biology</td>
+                                <td>Glassware</td>
+                                <td>Bunsen Burners</td>
+                                <td>3</td>
+                                <td>07-Apr-2025</td>
+                                <td><span class="badge badge-rejected">Rejected</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-secondary" disabled>
+                                        Completed
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+

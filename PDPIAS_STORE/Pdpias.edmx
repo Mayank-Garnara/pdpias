@@ -1,0 +1,1797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_pdpiasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="chemical">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="cas_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="image_structure" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="molicular_formula" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="molicular_weight" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chemical_exchange_department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender_department_id" Type="int" Nullable="false" />
+          <Property Name="sender_head_id" Type="int" Nullable="false" />
+          <Property Name="receiver_department_id" Type="int" Nullable="false" />
+          <Property Name="receiver_head_id" Type="int" Nullable="false" />
+          <Property Name="department_storage_id" Type="int" Nullable="false" />
+          <Property Name="quentity" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="receiver_acknowledge_status" Type="tinyint" Nullable="false" />
+          <Property Name="receiver_response_message" Type="nvarchar" MaxLength="100" />
+          <Property Name="request_date" Type="datetime" Nullable="false" />
+          <Property Name="sender_head_response_date" Type="datetime" Nullable="false" />
+          <Property Name="receiver_head_response_date" Type="datetime" Nullable="false" />
+          <Property Name="is_collected" Type="bit" Nullable="false" />
+          <Property Name="collected_date" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chemical_state">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chemical_state" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chemical_type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="icon" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department_head">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contact_no" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="profile_pic" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department_storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="request_id" Type="int" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="int" Nullable="false" />
+          <Property Name="quentity" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department_to_store_request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="chemical_id" Type="int" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="int" Nullable="false" />
+          <Property Name="quentity" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="department_head_id" Type="int" Nullable="false" />
+          <Property Name="store_manager_id" Type="int" Nullable="false" />
+          <Property Name="is_approved_by_sender_head" Type="tinyint" Nullable="false" />
+          <Property Name="is_approved_by_store_manager" Type="tinyint" Nullable="false" />
+          <Property Name="request_date" Type="datetime" Nullable="false" />
+          <Property Name="head_approved_date" Type="datetime" />
+          <Property Name="store_manager_approved_date" Type="datetime" />
+          <Property Name="is_collected" Type="bit" Nullable="false" />
+          <Property Name="collected_date" Type="datetime" />
+          <Property Name="store_manager_response_message" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="glassware">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="head_chemical_storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="head_id" Type="int" Nullable="false" />
+          <Property Name="chemical_id" Type="int" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="expiry_date" Type="datetime" Nullable="false" />
+          <Property Name="manufacture_date" Type="datetime" Nullable="false" />
+          <Property Name="molecular_weight" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="storage_condition" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hazard_level" Type="tinyint" Nullable="false" />
+          <Property Name="supplier_company_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="chemical_type_id" Type="int" Nullable="false" />
+          <Property Name="chemical_state_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lab_technician">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="contact_no" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="profile_pic" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="main_chemical_storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="head_id" Type="int" Nullable="false" />
+          <Property Name="chemical_id" Type="int" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="int" Nullable="false" />
+          <Property Name="original_quantity" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="current_quantity" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="expiry_date" Type="datetime" Nullable="false" />
+          <Property Name="manufacture_date" Type="datetime" Nullable="false" />
+          <Property Name="molecular_weight" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="storage_condition" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hazard_level" Type="tinyint" Nullable="false" />
+          <Property Name="supplier_company_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="chemical_type_id" Type="int" Nullable="false" />
+          <Property Name="chemical_state_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="main_glassware_storage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="head_id" Type="int" Nullable="false" />
+          <Property Name="glassware_id" Type="int" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="int" Nullable="false" />
+          <Property Name="original_quantity" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="current_quantity" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="measurement_unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="principal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contact_no" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="registered_at" Type="datetime" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="profile_pic" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="storage_tracker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_department_to_department" Type="bit" />
+          <Property Name="is_department_to_storage" Type="bit" />
+          <Property Name="department_to_department_id" Type="int" />
+          <Property Name="department_to_storage_id" Type="int" />
+        </EntityType>
+        <EntityType Name="store_manager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="contact_no" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="profile_pic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_chemical_exchange_department_To_department_storage">
+          <End Role="department_storage" Type="Self.department_storage" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_storage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="department_storage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_receiver_department">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="receiver_department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_receiver_department_head">
+          <End Role="department_head" Type="Self.department_head" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_head">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="receiver_head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_sender_department">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="sender_department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_sender_department_head">
+          <End Role="department_head" Type="Self.department_head" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_head">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="sender_head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_head_ToDepartment">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="department_head" Type="Self.department_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_head">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_storage_Todepartment_to_store">
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="1" />
+          <End Role="department_storage" Type="Self.department_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_to_store_request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_storage">
+              <PropertyRef Name="request_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="department_storage" Type="Self.department_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Tochemical">
+          <End Role="chemical" Type="Self.chemical" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="chemical_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Todepartment">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Todepartment_head">
+          <End Role="department_head" Type="Self.department_head" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_head">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="department_head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="store_manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tochemical">
+          <End Role="chemical" Type="Self.chemical" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="chemical_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tochemical_state">
+          <End Role="chemical_state" Type="Self.chemical_state" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="chemical_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tochemical_type">
+          <End Role="chemical_type" Type="Self.chemical_type" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="chemical_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lab_technician_ToDepartment">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="lab_technician" Type="Self.lab_technician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="lab_technician">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tochemical">
+          <End Role="chemical" Type="Self.chemical" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="chemical_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tochemical_state">
+          <End Role="chemical_state" Type="Self.chemical_state" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="chemical_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tochemical_type">
+          <End Role="chemical_type" Type="Self.chemical_type" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="chemical_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_glassware_storage_Toglassware">
+          <End Role="glassware" Type="Self.glassware" Multiplicity="1" />
+          <End Role="main_glassware_storage" Type="Self.main_glassware_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="glassware">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_glassware_storage">
+              <PropertyRef Name="glassware_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_glassware_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="main_glassware_storage" Type="Self.main_glassware_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_glassware_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_glassware_storage_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="main_glassware_storage" Type="Self.main_glassware_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_glassware_storage">
+              <PropertyRef Name="head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_storage_tracker_Tochemical_exchange_department">
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="0..1" />
+          <End Role="storage_tracker" Type="Self.storage_tracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_exchange_department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="storage_tracker">
+              <PropertyRef Name="department_to_department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_storage_tracker_Todepartment_to_store_request">
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="0..1" />
+          <End Role="storage_tracker" Type="Self.storage_tracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_to_store_request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="storage_tracker">
+              <PropertyRef Name="department_to_storage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_pdpiasModelStoreContainer">
+          <EntitySet Name="chemical" EntityType="Self.chemical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chemical_exchange_department" EntityType="Self.chemical_exchange_department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chemical_state" EntityType="Self.chemical_state" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chemical_type" EntityType="Self.chemical_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department_head" EntityType="Self.department_head" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department_storage" EntityType="Self.department_storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department_to_store_request" EntityType="Self.department_to_store_request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="glassware" EntityType="Self.glassware" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="head_chemical_storage" EntityType="Self.head_chemical_storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lab_technician" EntityType="Self.lab_technician" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="main_chemical_storage" EntityType="Self.main_chemical_storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="main_glassware_storage" EntityType="Self.main_glassware_storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="measurement_unit" EntityType="Self.measurement_unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="principal" EntityType="Self.principal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="storage_tracker" EntityType="Self.storage_tracker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="store_manager" EntityType="Self.store_manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_chemical_exchange_department_To_department_storage" Association="Self.FK_chemical_exchange_department_To_department_storage">
+            <End Role="department_storage" EntitySet="department_storage" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_receiver_department" Association="Self.FK_chemical_exchange_department_To_receiver_department">
+            <End Role="department" EntitySet="department" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_receiver_department_head" Association="Self.FK_chemical_exchange_department_To_receiver_department_head">
+            <End Role="department_head" EntitySet="department_head" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_sender_department" Association="Self.FK_chemical_exchange_department_To_sender_department">
+            <End Role="department" EntitySet="department" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_sender_department_head" Association="Self.FK_chemical_exchange_department_To_sender_department_head">
+            <End Role="department_head" EntitySet="department_head" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_head_ToDepartment" Association="Self.FK_department_head_ToDepartment">
+            <End Role="department" EntitySet="department" />
+            <End Role="department_head" EntitySet="department_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_storage_Todepartment_to_store" Association="Self.FK_department_storage_Todepartment_to_store">
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+            <End Role="department_storage" EntitySet="department_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_storage_Tomeasurement_unit" Association="Self.FK_department_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="department_storage" EntitySet="department_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Tochemical" Association="Self.FK_department_to_store_request_Tochemical">
+            <End Role="chemical" EntitySet="chemical" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Todepartment" Association="Self.FK_department_to_store_request_Todepartment">
+            <End Role="department" EntitySet="department" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Todepartment_head" Association="Self.FK_department_to_store_request_Todepartment_head">
+            <End Role="department_head" EntitySet="department_head" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Tomeasurement_unit" Association="Self.FK_department_to_store_request_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Tostore_manager" Association="Self.FK_department_to_store_request_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tochemical" Association="Self.FK_head_chemical_storage_Tochemical">
+            <End Role="chemical" EntitySet="chemical" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tochemical_state" Association="Self.FK_head_chemical_storage_Tochemical_state">
+            <End Role="chemical_state" EntitySet="chemical_state" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tochemical_type" Association="Self.FK_head_chemical_storage_Tochemical_type">
+            <End Role="chemical_type" EntitySet="chemical_type" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tomeasurement_unit" Association="Self.FK_head_chemical_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tostore_manager" Association="Self.FK_head_chemical_storage_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lab_technician_ToDepartment" Association="Self.FK_lab_technician_ToDepartment">
+            <End Role="department" EntitySet="department" />
+            <End Role="lab_technician" EntitySet="lab_technician" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tochemical" Association="Self.FK_main_chemical_storage_Tochemical">
+            <End Role="chemical" EntitySet="chemical" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tochemical_state" Association="Self.FK_main_chemical_storage_Tochemical_state">
+            <End Role="chemical_state" EntitySet="chemical_state" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tochemical_type" Association="Self.FK_main_chemical_storage_Tochemical_type">
+            <End Role="chemical_type" EntitySet="chemical_type" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tomeasurement_unit" Association="Self.FK_main_chemical_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tostore_manager" Association="Self.FK_main_chemical_storage_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_glassware_storage_Toglassware" Association="Self.FK_main_glassware_storage_Toglassware">
+            <End Role="glassware" EntitySet="glassware" />
+            <End Role="main_glassware_storage" EntitySet="main_glassware_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_glassware_storage_Tomeasurement_unit" Association="Self.FK_main_glassware_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="main_glassware_storage" EntitySet="main_glassware_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_glassware_storage_Tostore_manager" Association="Self.FK_main_glassware_storage_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="main_glassware_storage" EntitySet="main_glassware_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_storage_tracker_Tochemical_exchange_department" Association="Self.FK_storage_tracker_Tochemical_exchange_department">
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+            <End Role="storage_tracker" EntitySet="storage_tracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_storage_tracker_Todepartment_to_store_request" Association="Self.FK_storage_tracker_Todepartment_to_store_request">
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+            <End Role="storage_tracker" EntitySet="storage_tracker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_pdpiasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="chemical">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cas_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image_structure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="molicular_formula" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="molicular_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="department_to_store_request" Relationship="Self.FK_department_to_store_request_Tochemical" FromRole="chemical" ToRole="department_to_store_request" />
+          <NavigationProperty Name="head_chemical_storage" Relationship="Self.FK_head_chemical_storage_Tochemical" FromRole="chemical" ToRole="head_chemical_storage" />
+          <NavigationProperty Name="main_chemical_storage" Relationship="Self.FK_main_chemical_storage_Tochemical" FromRole="chemical" ToRole="main_chemical_storage" />
+        </EntityType>
+        <EntityType Name="chemical_exchange_department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender_department_id" Type="Int32" Nullable="false" />
+          <Property Name="sender_head_id" Type="Int32" Nullable="false" />
+          <Property Name="receiver_department_id" Type="Int32" Nullable="false" />
+          <Property Name="receiver_head_id" Type="Int32" Nullable="false" />
+          <Property Name="department_storage_id" Type="Int32" Nullable="false" />
+          <Property Name="quentity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="receiver_acknowledge_status" Type="Byte" Nullable="false" />
+          <Property Name="receiver_response_message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sender_head_response_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="receiver_head_response_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_collected" Type="Boolean" Nullable="false" />
+          <Property Name="collected_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="department_storage" Relationship="Self.FK_chemical_exchange_department_To_department_storage" FromRole="chemical_exchange_department" ToRole="department_storage" />
+          <NavigationProperty Name="department" Relationship="Self.FK_chemical_exchange_department_To_receiver_department" FromRole="chemical_exchange_department" ToRole="department" />
+          <NavigationProperty Name="department_head" Relationship="Self.FK_chemical_exchange_department_To_receiver_department_head" FromRole="chemical_exchange_department" ToRole="department_head" />
+          <NavigationProperty Name="department1" Relationship="Self.FK_chemical_exchange_department_To_sender_department" FromRole="chemical_exchange_department" ToRole="department" />
+          <NavigationProperty Name="department_head1" Relationship="Self.FK_chemical_exchange_department_To_sender_department_head" FromRole="chemical_exchange_department" ToRole="department_head" />
+          <NavigationProperty Name="storage_tracker" Relationship="Self.FK_storage_tracker_Tochemical_exchange_department" FromRole="chemical_exchange_department" ToRole="storage_tracker" />
+        </EntityType>
+        <EntityType Name="chemical_state">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chemical_state1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="head_chemical_storage" Relationship="Self.FK_head_chemical_storage_Tochemical_state" FromRole="chemical_state" ToRole="head_chemical_storage" />
+          <NavigationProperty Name="main_chemical_storage" Relationship="Self.FK_main_chemical_storage_Tochemical_state" FromRole="chemical_state" ToRole="main_chemical_storage" />
+        </EntityType>
+        <EntityType Name="chemical_type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="head_chemical_storage" Relationship="Self.FK_head_chemical_storage_Tochemical_type" FromRole="chemical_type" ToRole="head_chemical_storage" />
+          <NavigationProperty Name="main_chemical_storage" Relationship="Self.FK_main_chemical_storage_Tochemical_type" FromRole="chemical_type" ToRole="main_chemical_storage" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chemical_exchange_department" Relationship="Self.FK_chemical_exchange_department_To_receiver_department" FromRole="department" ToRole="chemical_exchange_department" />
+          <NavigationProperty Name="chemical_exchange_department1" Relationship="Self.FK_chemical_exchange_department_To_sender_department" FromRole="department" ToRole="chemical_exchange_department" />
+          <NavigationProperty Name="department_head" Relationship="Self.FK_department_head_ToDepartment" FromRole="department" ToRole="department_head" />
+          <NavigationProperty Name="department_to_store_request" Relationship="Self.FK_department_to_store_request_Todepartment" FromRole="department" ToRole="department_to_store_request" />
+          <NavigationProperty Name="lab_technician" Relationship="Self.FK_lab_technician_ToDepartment" FromRole="department" ToRole="lab_technician" />
+        </EntityType>
+        <EntityType Name="department_head">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contact_no" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="profile_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chemical_exchange_department" Relationship="Self.FK_chemical_exchange_department_To_receiver_department_head" FromRole="department_head" ToRole="chemical_exchange_department" />
+          <NavigationProperty Name="chemical_exchange_department1" Relationship="Self.FK_chemical_exchange_department_To_sender_department_head" FromRole="department_head" ToRole="chemical_exchange_department" />
+          <NavigationProperty Name="department" Relationship="Self.FK_department_head_ToDepartment" FromRole="department_head" ToRole="department" />
+          <NavigationProperty Name="department_to_store_request" Relationship="Self.FK_department_to_store_request_Todepartment_head" FromRole="department_head" ToRole="department_to_store_request" />
+        </EntityType>
+        <EntityType Name="department_storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="request_id" Type="Int32" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="Int32" Nullable="false" />
+          <Property Name="quentity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chemical_exchange_department" Relationship="Self.FK_chemical_exchange_department_To_department_storage" FromRole="department_storage" ToRole="chemical_exchange_department" />
+          <NavigationProperty Name="department_to_store_request" Relationship="Self.FK_department_storage_Todepartment_to_store" FromRole="department_storage" ToRole="department_to_store_request" />
+          <NavigationProperty Name="measurement_unit" Relationship="Self.FK_department_storage_Tomeasurement_unit" FromRole="department_storage" ToRole="measurement_unit" />
+        </EntityType>
+        <EntityType Name="department_to_store_request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <Property Name="chemical_id" Type="Int32" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="Int32" Nullable="false" />
+          <Property Name="quentity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="department_head_id" Type="Int32" Nullable="false" />
+          <Property Name="store_manager_id" Type="Int32" Nullable="false" />
+          <Property Name="is_approved_by_sender_head" Type="Byte" Nullable="false" />
+          <Property Name="is_approved_by_store_manager" Type="Byte" Nullable="false" />
+          <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="head_approved_date" Type="DateTime" Precision="3" />
+          <Property Name="store_manager_approved_date" Type="DateTime" Precision="3" />
+          <Property Name="is_collected" Type="Boolean" Nullable="false" />
+          <Property Name="collected_date" Type="DateTime" Precision="3" />
+          <Property Name="store_manager_response_message" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="chemical" Relationship="Self.FK_department_to_store_request_Tochemical" FromRole="department_to_store_request" ToRole="chemical" />
+          <NavigationProperty Name="department" Relationship="Self.FK_department_to_store_request_Todepartment" FromRole="department_to_store_request" ToRole="department" />
+          <NavigationProperty Name="department_head" Relationship="Self.FK_department_to_store_request_Todepartment_head" FromRole="department_to_store_request" ToRole="department_head" />
+          <NavigationProperty Name="department_storage" Relationship="Self.FK_department_storage_Todepartment_to_store" FromRole="department_to_store_request" ToRole="department_storage" />
+          <NavigationProperty Name="measurement_unit" Relationship="Self.FK_department_to_store_request_Tomeasurement_unit" FromRole="department_to_store_request" ToRole="measurement_unit" />
+          <NavigationProperty Name="store_manager" Relationship="Self.FK_department_to_store_request_Tostore_manager" FromRole="department_to_store_request" ToRole="store_manager" />
+          <NavigationProperty Name="storage_tracker" Relationship="Self.FK_storage_tracker_Todepartment_to_store_request" FromRole="department_to_store_request" ToRole="storage_tracker" />
+        </EntityType>
+        <EntityType Name="glassware">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="main_glassware_storage" Relationship="Self.FK_main_glassware_storage_Toglassware" FromRole="glassware" ToRole="main_glassware_storage" />
+        </EntityType>
+        <EntityType Name="head_chemical_storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="head_id" Type="Int32" Nullable="false" />
+          <Property Name="chemical_id" Type="Int32" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="expiry_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="manufacture_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="molecular_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="storage_condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hazard_level" Type="Byte" Nullable="false" />
+          <Property Name="supplier_company_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="chemical_type_id" Type="Int32" Nullable="false" />
+          <Property Name="chemical_state_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="chemical" Relationship="Self.FK_head_chemical_storage_Tochemical" FromRole="head_chemical_storage" ToRole="chemical" />
+          <NavigationProperty Name="chemical_state" Relationship="Self.FK_head_chemical_storage_Tochemical_state" FromRole="head_chemical_storage" ToRole="chemical_state" />
+          <NavigationProperty Name="chemical_type" Relationship="Self.FK_head_chemical_storage_Tochemical_type" FromRole="head_chemical_storage" ToRole="chemical_type" />
+          <NavigationProperty Name="measurement_unit" Relationship="Self.FK_head_chemical_storage_Tomeasurement_unit" FromRole="head_chemical_storage" ToRole="measurement_unit" />
+          <NavigationProperty Name="store_manager" Relationship="Self.FK_head_chemical_storage_Tostore_manager" FromRole="head_chemical_storage" ToRole="store_manager" />
+        </EntityType>
+        <EntityType Name="lab_technician">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="contact_no" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="profile_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="department" Relationship="Self.FK_lab_technician_ToDepartment" FromRole="lab_technician" ToRole="department" />
+        </EntityType>
+        <EntityType Name="main_chemical_storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="head_id" Type="Int32" Nullable="false" />
+          <Property Name="chemical_id" Type="Int32" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="Int32" Nullable="false" />
+          <Property Name="original_quantity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="current_quantity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="expiry_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="manufacture_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="molecular_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="storage_condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hazard_level" Type="Byte" Nullable="false" />
+          <Property Name="supplier_company_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="chemical_type_id" Type="Int32" Nullable="false" />
+          <Property Name="chemical_state_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="chemical" Relationship="Self.FK_main_chemical_storage_Tochemical" FromRole="main_chemical_storage" ToRole="chemical" />
+          <NavigationProperty Name="chemical_state" Relationship="Self.FK_main_chemical_storage_Tochemical_state" FromRole="main_chemical_storage" ToRole="chemical_state" />
+          <NavigationProperty Name="chemical_type" Relationship="Self.FK_main_chemical_storage_Tochemical_type" FromRole="main_chemical_storage" ToRole="chemical_type" />
+          <NavigationProperty Name="measurement_unit" Relationship="Self.FK_main_chemical_storage_Tomeasurement_unit" FromRole="main_chemical_storage" ToRole="measurement_unit" />
+          <NavigationProperty Name="store_manager" Relationship="Self.FK_main_chemical_storage_Tostore_manager" FromRole="main_chemical_storage" ToRole="store_manager" />
+        </EntityType>
+        <EntityType Name="main_glassware_storage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="head_id" Type="Int32" Nullable="false" />
+          <Property Name="glassware_id" Type="Int32" Nullable="false" />
+          <Property Name="measurement_unit_id" Type="Int32" Nullable="false" />
+          <Property Name="original_quantity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="current_quantity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="glassware" Relationship="Self.FK_main_glassware_storage_Toglassware" FromRole="main_glassware_storage" ToRole="glassware" />
+          <NavigationProperty Name="measurement_unit" Relationship="Self.FK_main_glassware_storage_Tomeasurement_unit" FromRole="main_glassware_storage" ToRole="measurement_unit" />
+          <NavigationProperty Name="store_manager" Relationship="Self.FK_main_glassware_storage_Tostore_manager" FromRole="main_glassware_storage" ToRole="store_manager" />
+        </EntityType>
+        <EntityType Name="measurement_unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="department_storage" Relationship="Self.FK_department_storage_Tomeasurement_unit" FromRole="measurement_unit" ToRole="department_storage" />
+          <NavigationProperty Name="department_to_store_request" Relationship="Self.FK_department_to_store_request_Tomeasurement_unit" FromRole="measurement_unit" ToRole="department_to_store_request" />
+          <NavigationProperty Name="head_chemical_storage" Relationship="Self.FK_head_chemical_storage_Tomeasurement_unit" FromRole="measurement_unit" ToRole="head_chemical_storage" />
+          <NavigationProperty Name="main_chemical_storage" Relationship="Self.FK_main_chemical_storage_Tomeasurement_unit" FromRole="measurement_unit" ToRole="main_chemical_storage" />
+          <NavigationProperty Name="main_glassware_storage" Relationship="Self.FK_main_glassware_storage_Tomeasurement_unit" FromRole="measurement_unit" ToRole="main_glassware_storage" />
+        </EntityType>
+        <EntityType Name="principal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contact_no" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="registered_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="profile_pic" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="storage_tracker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_department_to_department" Type="Boolean" />
+          <Property Name="is_department_to_storage" Type="Boolean" />
+          <Property Name="department_to_department_id" Type="Int32" />
+          <Property Name="department_to_storage_id" Type="Int32" />
+          <NavigationProperty Name="chemical_exchange_department" Relationship="Self.FK_storage_tracker_Tochemical_exchange_department" FromRole="storage_tracker" ToRole="chemical_exchange_department" />
+          <NavigationProperty Name="department_to_store_request" Relationship="Self.FK_storage_tracker_Todepartment_to_store_request" FromRole="storage_tracker" ToRole="department_to_store_request" />
+        </EntityType>
+        <EntityType Name="store_manager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contact_no" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="profile_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="department_to_store_request" Relationship="Self.FK_department_to_store_request_Tostore_manager" FromRole="store_manager" ToRole="department_to_store_request" />
+          <NavigationProperty Name="head_chemical_storage" Relationship="Self.FK_head_chemical_storage_Tostore_manager" FromRole="store_manager" ToRole="head_chemical_storage" />
+          <NavigationProperty Name="main_chemical_storage" Relationship="Self.FK_main_chemical_storage_Tostore_manager" FromRole="store_manager" ToRole="main_chemical_storage" />
+          <NavigationProperty Name="main_glassware_storage" Relationship="Self.FK_main_glassware_storage_Tostore_manager" FromRole="store_manager" ToRole="main_glassware_storage" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_department_to_store_request_Tochemical">
+          <End Role="chemical" Type="Self.chemical" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="chemical_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tochemical">
+          <End Role="chemical" Type="Self.chemical" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="chemical_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tochemical">
+          <End Role="chemical" Type="Self.chemical" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="chemical_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_department_storage">
+          <End Role="department_storage" Type="Self.department_storage" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_storage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="department_storage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_receiver_department">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="receiver_department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_receiver_department_head">
+          <End Role="department_head" Type="Self.department_head" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_head">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="receiver_head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_sender_department">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="sender_department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chemical_exchange_department_To_sender_department_head">
+          <End Role="department_head" Type="Self.department_head" Multiplicity="1" />
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_head">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chemical_exchange_department">
+              <PropertyRef Name="sender_head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_storage_tracker_Tochemical_exchange_department">
+          <End Role="chemical_exchange_department" Type="Self.chemical_exchange_department" Multiplicity="0..1" />
+          <End Role="storage_tracker" Type="Self.storage_tracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_exchange_department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="storage_tracker">
+              <PropertyRef Name="department_to_department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tochemical_state">
+          <End Role="chemical_state" Type="Self.chemical_state" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="chemical_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tochemical_state">
+          <End Role="chemical_state" Type="Self.chemical_state" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="chemical_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tochemical_type">
+          <End Role="chemical_type" Type="Self.chemical_type" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="chemical_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tochemical_type">
+          <End Role="chemical_type" Type="Self.chemical_type" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chemical_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="chemical_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_head_ToDepartment">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="department_head" Type="Self.department_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_head">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Todepartment">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lab_technician_ToDepartment">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="lab_technician" Type="Self.lab_technician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="lab_technician">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Todepartment_head">
+          <End Role="department_head" Type="Self.department_head" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_head">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="department_head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_storage_Todepartment_to_store">
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="1" />
+          <End Role="department_storage" Type="Self.department_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_to_store_request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_storage">
+              <PropertyRef Name="request_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="department_storage" Type="Self.department_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_department_to_store_request_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="department_to_store_request">
+              <PropertyRef Name="store_manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_storage_tracker_Todepartment_to_store_request">
+          <End Role="department_to_store_request" Type="Self.department_to_store_request" Multiplicity="0..1" />
+          <End Role="storage_tracker" Type="Self.storage_tracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_to_store_request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="storage_tracker">
+              <PropertyRef Name="department_to_storage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_glassware_storage_Toglassware">
+          <End Role="glassware" Type="Self.glassware" Multiplicity="1" />
+          <End Role="main_glassware_storage" Type="Self.main_glassware_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="glassware">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_glassware_storage">
+              <PropertyRef Name="glassware_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_head_chemical_storage_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="head_chemical_storage" Type="Self.head_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="head_chemical_storage">
+              <PropertyRef Name="head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_chemical_storage_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="main_chemical_storage" Type="Self.main_chemical_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_chemical_storage">
+              <PropertyRef Name="head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_glassware_storage_Tomeasurement_unit">
+          <End Role="measurement_unit" Type="Self.measurement_unit" Multiplicity="1" />
+          <End Role="main_glassware_storage" Type="Self.main_glassware_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement_unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_glassware_storage">
+              <PropertyRef Name="measurement_unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_main_glassware_storage_Tostore_manager">
+          <End Role="store_manager" Type="Self.store_manager" Multiplicity="1" />
+          <End Role="main_glassware_storage" Type="Self.main_glassware_storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store_manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="main_glassware_storage">
+              <PropertyRef Name="head_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_pdpiasEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="chemicals" EntityType="Self.chemical" />
+          <EntitySet Name="chemical_exchange_department" EntityType="Self.chemical_exchange_department" />
+          <EntitySet Name="chemical_state" EntityType="Self.chemical_state" />
+          <EntitySet Name="chemical_type" EntityType="Self.chemical_type" />
+          <EntitySet Name="departments" EntityType="Self.department" />
+          <EntitySet Name="department_head" EntityType="Self.department_head" />
+          <EntitySet Name="department_storage" EntityType="Self.department_storage" />
+          <EntitySet Name="department_to_store_request" EntityType="Self.department_to_store_request" />
+          <EntitySet Name="glasswares" EntityType="Self.glassware" />
+          <EntitySet Name="head_chemical_storage" EntityType="Self.head_chemical_storage" />
+          <EntitySet Name="lab_technician" EntityType="Self.lab_technician" />
+          <EntitySet Name="main_chemical_storage" EntityType="Self.main_chemical_storage" />
+          <EntitySet Name="main_glassware_storage" EntityType="Self.main_glassware_storage" />
+          <EntitySet Name="measurement_unit" EntityType="Self.measurement_unit" />
+          <EntitySet Name="principals" EntityType="Self.principal" />
+          <EntitySet Name="storage_tracker" EntityType="Self.storage_tracker" />
+          <EntitySet Name="store_manager" EntityType="Self.store_manager" />
+          <EntitySet Name="Tables" EntityType="Self.Table" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_department_to_store_request_Tochemical" Association="Self.FK_department_to_store_request_Tochemical">
+            <End Role="chemical" EntitySet="chemicals" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tochemical" Association="Self.FK_head_chemical_storage_Tochemical">
+            <End Role="chemical" EntitySet="chemicals" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tochemical" Association="Self.FK_main_chemical_storage_Tochemical">
+            <End Role="chemical" EntitySet="chemicals" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_department_storage" Association="Self.FK_chemical_exchange_department_To_department_storage">
+            <End Role="department_storage" EntitySet="department_storage" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_receiver_department" Association="Self.FK_chemical_exchange_department_To_receiver_department">
+            <End Role="department" EntitySet="departments" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_receiver_department_head" Association="Self.FK_chemical_exchange_department_To_receiver_department_head">
+            <End Role="department_head" EntitySet="department_head" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_sender_department" Association="Self.FK_chemical_exchange_department_To_sender_department">
+            <End Role="department" EntitySet="departments" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chemical_exchange_department_To_sender_department_head" Association="Self.FK_chemical_exchange_department_To_sender_department_head">
+            <End Role="department_head" EntitySet="department_head" />
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_storage_tracker_Tochemical_exchange_department" Association="Self.FK_storage_tracker_Tochemical_exchange_department">
+            <End Role="chemical_exchange_department" EntitySet="chemical_exchange_department" />
+            <End Role="storage_tracker" EntitySet="storage_tracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tochemical_state" Association="Self.FK_head_chemical_storage_Tochemical_state">
+            <End Role="chemical_state" EntitySet="chemical_state" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tochemical_state" Association="Self.FK_main_chemical_storage_Tochemical_state">
+            <End Role="chemical_state" EntitySet="chemical_state" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tochemical_type" Association="Self.FK_head_chemical_storage_Tochemical_type">
+            <End Role="chemical_type" EntitySet="chemical_type" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tochemical_type" Association="Self.FK_main_chemical_storage_Tochemical_type">
+            <End Role="chemical_type" EntitySet="chemical_type" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_head_ToDepartment" Association="Self.FK_department_head_ToDepartment">
+            <End Role="department" EntitySet="departments" />
+            <End Role="department_head" EntitySet="department_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Todepartment" Association="Self.FK_department_to_store_request_Todepartment">
+            <End Role="department" EntitySet="departments" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lab_technician_ToDepartment" Association="Self.FK_lab_technician_ToDepartment">
+            <End Role="department" EntitySet="departments" />
+            <End Role="lab_technician" EntitySet="lab_technician" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Todepartment_head" Association="Self.FK_department_to_store_request_Todepartment_head">
+            <End Role="department_head" EntitySet="department_head" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_storage_Todepartment_to_store" Association="Self.FK_department_storage_Todepartment_to_store">
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+            <End Role="department_storage" EntitySet="department_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_storage_Tomeasurement_unit" Association="Self.FK_department_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="department_storage" EntitySet="department_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Tomeasurement_unit" Association="Self.FK_department_to_store_request_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_department_to_store_request_Tostore_manager" Association="Self.FK_department_to_store_request_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_storage_tracker_Todepartment_to_store_request" Association="Self.FK_storage_tracker_Todepartment_to_store_request">
+            <End Role="department_to_store_request" EntitySet="department_to_store_request" />
+            <End Role="storage_tracker" EntitySet="storage_tracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_glassware_storage_Toglassware" Association="Self.FK_main_glassware_storage_Toglassware">
+            <End Role="glassware" EntitySet="glasswares" />
+            <End Role="main_glassware_storage" EntitySet="main_glassware_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tomeasurement_unit" Association="Self.FK_head_chemical_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_head_chemical_storage_Tostore_manager" Association="Self.FK_head_chemical_storage_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="head_chemical_storage" EntitySet="head_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tomeasurement_unit" Association="Self.FK_main_chemical_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_chemical_storage_Tostore_manager" Association="Self.FK_main_chemical_storage_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="main_chemical_storage" EntitySet="main_chemical_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_glassware_storage_Tomeasurement_unit" Association="Self.FK_main_glassware_storage_Tomeasurement_unit">
+            <End Role="measurement_unit" EntitySet="measurement_unit" />
+            <End Role="main_glassware_storage" EntitySet="main_glassware_storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_main_glassware_storage_Tostore_manager" Association="Self.FK_main_glassware_storage_Tostore_manager">
+            <End Role="store_manager" EntitySet="store_manager" />
+            <End Role="main_glassware_storage" EntitySet="main_glassware_storage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_pdpiasModelStoreContainer" CdmEntityContainer="db_pdpiasEntities1">
+          <EntitySetMapping Name="chemicals">
+            <EntityTypeMapping TypeName="db_pdpiasModel.chemical">
+              <MappingFragment StoreEntitySet="chemical">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cas_number" ColumnName="cas_number" />
+                <ScalarProperty Name="image_structure" ColumnName="image_structure" />
+                <ScalarProperty Name="molicular_formula" ColumnName="molicular_formula" />
+                <ScalarProperty Name="molicular_weight" ColumnName="molicular_weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chemical_exchange_department">
+            <EntityTypeMapping TypeName="db_pdpiasModel.chemical_exchange_department">
+              <MappingFragment StoreEntitySet="chemical_exchange_department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="sender_department_id" ColumnName="sender_department_id" />
+                <ScalarProperty Name="sender_head_id" ColumnName="sender_head_id" />
+                <ScalarProperty Name="receiver_department_id" ColumnName="receiver_department_id" />
+                <ScalarProperty Name="receiver_head_id" ColumnName="receiver_head_id" />
+                <ScalarProperty Name="department_storage_id" ColumnName="department_storage_id" />
+                <ScalarProperty Name="quentity" ColumnName="quentity" />
+                <ScalarProperty Name="receiver_acknowledge_status" ColumnName="receiver_acknowledge_status" />
+                <ScalarProperty Name="receiver_response_message" ColumnName="receiver_response_message" />
+                <ScalarProperty Name="request_date" ColumnName="request_date" />
+                <ScalarProperty Name="sender_head_response_date" ColumnName="sender_head_response_date" />
+                <ScalarProperty Name="receiver_head_response_date" ColumnName="receiver_head_response_date" />
+                <ScalarProperty Name="is_collected" ColumnName="is_collected" />
+                <ScalarProperty Name="collected_date" ColumnName="collected_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chemical_state">
+            <EntityTypeMapping TypeName="db_pdpiasModel.chemical_state">
+              <MappingFragment StoreEntitySet="chemical_state">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="chemical_state1" ColumnName="chemical_state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chemical_type">
+            <EntityTypeMapping TypeName="db_pdpiasModel.chemical_type">
+              <MappingFragment StoreEntitySet="chemical_type">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="db_pdpiasModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department_head">
+            <EntityTypeMapping TypeName="db_pdpiasModel.department_head">
+              <MappingFragment StoreEntitySet="department_head">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department_storage">
+            <EntityTypeMapping TypeName="db_pdpiasModel.department_storage">
+              <MappingFragment StoreEntitySet="department_storage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="request_id" ColumnName="request_id" />
+                <ScalarProperty Name="measurement_unit_id" ColumnName="measurement_unit_id" />
+                <ScalarProperty Name="quentity" ColumnName="quentity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department_to_store_request">
+            <EntityTypeMapping TypeName="db_pdpiasModel.department_to_store_request">
+              <MappingFragment StoreEntitySet="department_to_store_request">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="chemical_id" ColumnName="chemical_id" />
+                <ScalarProperty Name="measurement_unit_id" ColumnName="measurement_unit_id" />
+                <ScalarProperty Name="quentity" ColumnName="quentity" />
+                <ScalarProperty Name="department_head_id" ColumnName="department_head_id" />
+                <ScalarProperty Name="store_manager_id" ColumnName="store_manager_id" />
+                <ScalarProperty Name="is_approved_by_sender_head" ColumnName="is_approved_by_sender_head" />
+                <ScalarProperty Name="is_approved_by_store_manager" ColumnName="is_approved_by_store_manager" />
+                <ScalarProperty Name="request_date" ColumnName="request_date" />
+                <ScalarProperty Name="head_approved_date" ColumnName="head_approved_date" />
+                <ScalarProperty Name="store_manager_approved_date" ColumnName="store_manager_approved_date" />
+                <ScalarProperty Name="is_collected" ColumnName="is_collected" />
+                <ScalarProperty Name="collected_date" ColumnName="collected_date" />
+                <ScalarProperty Name="store_manager_response_message" ColumnName="store_manager_response_message" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="glasswares">
+            <EntityTypeMapping TypeName="db_pdpiasModel.glassware">
+              <MappingFragment StoreEntitySet="glassware">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="head_chemical_storage">
+            <EntityTypeMapping TypeName="db_pdpiasModel.head_chemical_storage">
+              <MappingFragment StoreEntitySet="head_chemical_storage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="head_id" ColumnName="head_id" />
+                <ScalarProperty Name="chemical_id" ColumnName="chemical_id" />
+                <ScalarProperty Name="measurement_unit_id" ColumnName="measurement_unit_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="expiry_date" ColumnName="expiry_date" />
+                <ScalarProperty Name="manufacture_date" ColumnName="manufacture_date" />
+                <ScalarProperty Name="molecular_weight" ColumnName="molecular_weight" />
+                <ScalarProperty Name="storage_condition" ColumnName="storage_condition" />
+                <ScalarProperty Name="hazard_level" ColumnName="hazard_level" />
+                <ScalarProperty Name="supplier_company_name" ColumnName="supplier_company_name" />
+                <ScalarProperty Name="chemical_type_id" ColumnName="chemical_type_id" />
+                <ScalarProperty Name="chemical_state_id" ColumnName="chemical_state_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lab_technician">
+            <EntityTypeMapping TypeName="db_pdpiasModel.lab_technician">
+              <MappingFragment StoreEntitySet="lab_technician">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="main_chemical_storage">
+            <EntityTypeMapping TypeName="db_pdpiasModel.main_chemical_storage">
+              <MappingFragment StoreEntitySet="main_chemical_storage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="head_id" ColumnName="head_id" />
+                <ScalarProperty Name="chemical_id" ColumnName="chemical_id" />
+                <ScalarProperty Name="measurement_unit_id" ColumnName="measurement_unit_id" />
+                <ScalarProperty Name="original_quantity" ColumnName="original_quantity" />
+                <ScalarProperty Name="current_quantity" ColumnName="current_quantity" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="expiry_date" ColumnName="expiry_date" />
+                <ScalarProperty Name="manufacture_date" ColumnName="manufacture_date" />
+                <ScalarProperty Name="molecular_weight" ColumnName="molecular_weight" />
+                <ScalarProperty Name="storage_condition" ColumnName="storage_condition" />
+                <ScalarProperty Name="hazard_level" ColumnName="hazard_level" />
+                <ScalarProperty Name="supplier_company_name" ColumnName="supplier_company_name" />
+                <ScalarProperty Name="chemical_type_id" ColumnName="chemical_type_id" />
+                <ScalarProperty Name="chemical_state_id" ColumnName="chemical_state_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="main_glassware_storage">
+            <EntityTypeMapping TypeName="db_pdpiasModel.main_glassware_storage">
+              <MappingFragment StoreEntitySet="main_glassware_storage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="head_id" ColumnName="head_id" />
+                <ScalarProperty Name="glassware_id" ColumnName="glassware_id" />
+                <ScalarProperty Name="measurement_unit_id" ColumnName="measurement_unit_id" />
+                <ScalarProperty Name="original_quantity" ColumnName="original_quantity" />
+                <ScalarProperty Name="current_quantity" ColumnName="current_quantity" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="measurement_unit">
+            <EntityTypeMapping TypeName="db_pdpiasModel.measurement_unit">
+              <MappingFragment StoreEntitySet="measurement_unit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="principals">
+            <EntityTypeMapping TypeName="db_pdpiasModel.principal">
+              <MappingFragment StoreEntitySet="principal">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="registered_at" ColumnName="registered_at" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storage_tracker">
+            <EntityTypeMapping TypeName="db_pdpiasModel.storage_tracker">
+              <MappingFragment StoreEntitySet="storage_tracker">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="is_department_to_department" ColumnName="is_department_to_department" />
+                <ScalarProperty Name="is_department_to_storage" ColumnName="is_department_to_storage" />
+                <ScalarProperty Name="department_to_department_id" ColumnName="department_to_department_id" />
+                <ScalarProperty Name="department_to_storage_id" ColumnName="department_to_storage_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="store_manager">
+            <EntityTypeMapping TypeName="db_pdpiasModel.store_manager">
+              <MappingFragment StoreEntitySet="store_manager">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="db_pdpiasModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="db_pdpiasModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

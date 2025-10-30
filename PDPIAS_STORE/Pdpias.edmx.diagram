@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7cc00215c684473e99ca24dff0e65498" Name="Diagram1">
+        <EntityTypeShape EntityType="db_pdpiasModel.chemical" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.chemical_exchange_department" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.chemical_state" Width="1.5" PointX="9" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.chemical_type" Width="1.5" PointX="9" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.department" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.department_head" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.department_storage" Width="1.5" PointX="13.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.department_to_store_request" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.glassware" Width="1.5" PointX="9" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.head_chemical_storage" Width="1.5" PointX="11.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.lab_technician" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.main_chemical_storage" Width="1.5" PointX="8.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.main_glassware_storage" Width="1.5" PointX="11.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.measurement_unit" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.principal" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.storage_tracker" Width="1.5" PointX="10.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.store_manager" Width="1.5" PointX="6" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.Table" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_pdpiasModel.user" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_to_store_request_Tochemical" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_head_chemical_storage_Tochemical" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_chemical_storage_Tochemical" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_chemical_exchange_department_To_department_storage" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_chemical_exchange_department_To_receiver_department" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_chemical_exchange_department_To_receiver_department_head" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_chemical_exchange_department_To_sender_department" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_chemical_exchange_department_To_sender_department_head" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_storage_tracker_Tochemical_exchange_department" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_head_chemical_storage_Tochemical_state" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_chemical_storage_Tochemical_state" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_head_chemical_storage_Tochemical_type" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_chemical_storage_Tochemical_type" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_head_ToDepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_to_store_request_Todepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_lab_technician_ToDepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_to_store_request_Todepartment_head" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_storage_Todepartment_to_store" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_storage_Tomeasurement_unit" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_to_store_request_Tomeasurement_unit" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_department_to_store_request_Tostore_manager" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_storage_tracker_Todepartment_to_store_request" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_glassware_storage_Toglassware" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_head_chemical_storage_Tomeasurement_unit" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_head_chemical_storage_Tostore_manager" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_chemical_storage_Tomeasurement_unit" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_chemical_storage_Tostore_manager" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_glassware_storage_Tomeasurement_unit" ManuallyRouted="false" />
+        <AssociationConnector Association="db_pdpiasModel.FK_main_glassware_storage_Tostore_manager" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "~/Views/Shared/HeadStore_dashboard.cshtml";
+    ViewBag.Title = "AddStock";
+}
+
+@* Model ko 'main_chemical_storage' entity se bind karein *@
+@model PDPIAS_STORE.main_chemical_storage
+
+<main class="main-content" id="mainContent">
+    <div class="container mt-4">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-primary text-white p-3">
+                <h4 class="mb-0 text-center">🧪 Add New Chemical Stock</h4>
+            </div>
+            <div class="card-body p-4">
+                @* Action name 'AddStock' aur Controller 'HeadStore' use karein *@
+                @using (Html.BeginForm("AddStock", "HeadStore", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "Please correct the following errors:", new { @class = "alert alert-danger" })
+
+                    <div class="row g-4">
+
+                        <div class="col-12">
+                            <h5 class="text-primary mb-3"><i class="bi bi-info-circle-fill me-2"></i>Chemical Identification</h5>
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+                                    @Html.Label("chemical_id", "Chemical Name", new { @class = "form-label fw-semibold" })
+                                    @Html.DropDownList("chemical_id", (IEnumerable<SelectListItem>)ViewBag.ChemicalList, "--- Select Chemical ---", new { @class = "form-control form-select", required = "required" })
+                                    @Html.ValidationMessage("chemical_id", "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.supplier_company_name, "Supplier Company Name", new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.supplier_company_name, new { @class = "form-control", placeholder = "Enter Supplier Name" })
+                                    @Html.ValidationMessageFor(m => m.supplier_company_name, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.molecular_weight, "Molecular Weight", new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.molecular_weight, new { @class = "form-control", placeholder = "Enter Molecular Weight" })
+                                    @Html.ValidationMessageFor(m => m.molecular_weight, "", new { @class = "text-danger" })
+                                </div>
+
+                       
+                            </div>
+                        </div>
+
+                        <div class="col-12"><hr class="my-0"></div>
+
+                        <div class="col-12">
+                            <h5 class="text-primary mb-3"><i class="bi bi-clipboard-data-fill me-2"></i>Quantity & Lifetime Details</h5>
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+                                    @Html.Label("measurement_unit_id", "Unit of Measure", new { @class = "form-label fw-semibold" })
+                                    @Html.DropDownList("measurement_unit_id", (IEnumerable<SelectListItem>)ViewBag.MeasurementUnitList, "--- Select Unit ---", new { @class = "form-control form-select", required = "required" })
+                                    @Html.ValidationMessage("measurement_unit_id", "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.original_quantity, "Original Quantity", new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.original_quantity, new { @class = "form-control", placeholder = "Enter Original Quantity", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.original_quantity, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.manufacture_date, "Manufacture Date", new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.manufacture_date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.manufacture_date, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.expiry_date, "Expiry Date", new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.expiry_date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.expiry_date, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12"><hr class="my-0"></div>
+
+                        <div class="col-12">
+                            <h5 class="text-primary mb-3"><i class="bi bi-shield-lock-fill me-2"></i>Safety and Classification</h5>
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+                                    @Html.Label("chemical_type_id", "Chemical Type", new { @class = "form-label fw-semibold" })
+                                    @Html.DropDownList("chemical_type_id", (IEnumerable<SelectListItem>)ViewBag.ChemicalTypeList, "--- Select Type ---", new { @class = "form-control form-select", required = "required" })
+                                    @Html.ValidationMessage("chemical_type_id", "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.Label("chemical_state_id", "Chemical State", new { @class = "form-label fw-semibold" })
+                                    @Html.DropDownList("chemical_state_id", (IEnumerable<SelectListItem>)ViewBag.ChemicalStateList, "--- Select State ---", new { @class = "form-control form-select", required = "required" })
+                                    @Html.ValidationMessage("chemical_state_id", "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.storage_condition, "Storage Condition", new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.storage_condition, new { @class = "form-control", placeholder = "e.g., Cool, Dark Place (2-8°C)" })
+                                    @Html.ValidationMessageFor(m => m.storage_condition, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.hazard_level, "Hazard Level (1-3)", new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.hazard_level, new { @class = "form-control", type = "number", min = "1", max = "5", placeholder = "Enter Hazard Level (1=Low, 5=High)" })
+                                    @Html.ValidationMessageFor(m => m.hazard_level, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        @* @Html.HiddenFor(m => m.current_quantity) *@
+
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <button type="submit" class="btn btn-success px-5 py-2">💾 Save Chemical Stock</button>
+                        @Html.ActionLink("↩ Back to List", "Index", null, new { @class = "btn btn-outline-secondary ms-3 px-5 py-2" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>

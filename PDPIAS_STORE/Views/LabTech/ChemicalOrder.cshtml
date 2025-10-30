@@ -1,0 +1,305 @@
+﻿@model List<PDPIAS_STORE.Models.labTech.chemicalOrder>
+@{
+    Layout = "~/VieWs/Shared/lebTech_Dashbord.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .table-wrapper {
+        max-height: 600px;
+        overflow-y: auto;
+        overflow-x: auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa;
+        z-index: 1;
+        vertical-align: middle;
+    }
+
+    th input {
+        width: 100%;
+        padding: 2px 6px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table th, .table td {
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    th input {
+        text-align: center;
+    }
+
+
+</style>
+
+<main class="main-content" id="mainContent">
+    <section id="chemical-details-section"
+             class="content-section">
+        <div class="page-header">
+            <h1 class="page-title">Chemical Order</h1>
+            <div>
+                @*<button class="btn btn-sm btn-outline-primary me-2">
+                    <i class="bi bi-download me-1"></i> Export
+                </button>
+                <button class="btn btn-sm btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addChemicalModal">
+                    <i class="bi bi-plus-circle me-1"></i> Issue Chemical
+                </button>*@
+            </div>
+        </div>
+
+        <div class="modal fade" id="addChemicalModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <!-- optional: modal-lg for large modal -->
+                <!--<div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formModalLabel">Tabbed Form Modal</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">-->
+                        <!-- Nav Tabs -->
+                        <!--<ul class="nav nav-tabs" id="formTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="form1-tab" data-bs-toggle="tab" data-bs-target="#form1" type="button" role="tab">Head Store</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="form2-tab" data-bs-toggle="tab" data-bs-target="#form2" type="button" role="tab">Department</button>
+                            </li>
+                        </ul>-->
+
+                        <!-- Tab Content -->
+                        <!--<div class="tab-content mt-3" id="formTabContent">-->
+                            <!-- Form 1 -->
+                            <!--<div class="mb-3">
+                                <label for="email1" class="form-label">Chemical ID</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="ChemicalId"
+                                       placeholder="Enter Chemical Id" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="email1" class="form-label">Chemical Name</label>
+                                <input type="chemical name"
+                                       class="form-control"
+                                       id="chemicalName"
+                                       placeholder="Enter your Chemical Name" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="Category" class="form-label">Category</label>
+                                <input type="Category"
+                                       class="form-control"
+                                       id="Category"
+                                       placeholder="Enter your Chemical Category" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="email1" class="form-label">Quantity</label>
+                                <input type="Quantity"
+                                       class="form-control"
+                                       id="Quantity"
+                                       placeholder="Enter your Chemical Quantity" />
+                            </div>-->
+
+                            <!-- Form 2 -->
+                            <!--<div class="tab-pane fade" id="form2" role="tabpanel">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="name1" class="form-label">Select department</label>
+                                        <select name="" id="">
+                                            <option value="">Abc</option>
+                                            <option value="">kcjbd</option>
+                                            <option value="">dkjs</option>
+                                            <option value="">wskdh</option>
+                                            <option value="">kdj</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="username2" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username2" placeholder="Enter username">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password2" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password2" placeholder="Enter password">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit Form 2</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>--> <!-- modal-body -->
+                <!--</div>-->
+            </div>
+        </div>
+
+        @*<p class="page-description">
+            View and manage detailed information about all chemicals in the
+            inventory.
+        </p>*@
+
+        <div class="card">
+            <div class="card-header">
+                <span>Chemicals</span>
+                <div class="input-group w-25">
+                    @*<input type="text"
+                    class="form-control form-control-sm"
+                    placeholder="Search chemicals..." />*@
+                    @*<button class="btn btn-sm btn-outline-secondary" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>*@
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-center">
+                            <tr>
+                                <th class="text-center">Actions</th>
+                                <th class="text-center">Chemical Id<br><input type="text" onkeyup="filterColumn(1)" placeholder="Search Id"></th>
+                                <th class="text-center">Chemical Name<br><input type="text" onkeyup="filterColumn(2)" placeholder="Search Name"></th>
+                                <th class="text-center">Cas No<br><input type="text" onkeyup="filterColumn(3)" placeholder="Search CAS No"></th>
+                                <th class="text-center">Molecular Weight<br><input type="text" onkeyup="filterColumn(4)" placeholder="Search MW"></th>
+                                <th class="text-center">Quantity<br><input type="text" onkeyup="filterColumn(5)" placeholder="Search Qty"></th>
+                                <th class="text-center">Supplier<br><input type="text" onkeyup="filterColumn(6)" placeholder="Search Supplier"></th>
+                                <th class="text-center">Order No<br><input type="text" onkeyup="filterColumn(7)" placeholder="Search Order No"></th>
+                                <th class="text-center">Order Date<br><input type="text" onkeyup="filterColumn(8)" placeholder="Search Order Date"></th>
+                                <th class="text-center">Expiry Date<br><input type="text" onkeyup="filterColumn(9)" placeholder="Search Expiry"></th>
+                                <th class="text-center">Order<br><input type="text" onkeyup="filterColumn(10)" placeholder="Yes/No"></th>
+                                <th class="text-center">Safety Level<br><input type="text" onkeyup="filterColumn(11)" placeholder="Search Level"></th>
+                                <th class="text-center">Status<br><input type="text" onkeyup="filterColumn(12)" placeholder="Search Status"></th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @*<button class="btn btn-sm btn-outline-primary me-1">
+                                            View
+                                        </button>*@
+                                        <button class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editChemicalModal"
+                                                data-id="@item.chemicalID"
+                                                data-name="@item.chemicalName"
+                                                data-cas="@item.casNo"
+                                                data-qty="@item.quantity"
+                                                data-suppier="@item.Supplier"
+                                                onclick="fillEditForm(this)">
+                                            Edit
+                                        </button>
+                                    </td>
+                                    <td>@item.chemicalID</td>
+                                    <td>@item.chemicalName</td>
+                                    <td>@item.casNo</td>
+                                    <td>@item.molecularWeight</td>
+                                    <td>@item.quantity</td>
+                                    <td>@item.Supplier</td>
+                                    <td>@item.orderNo</td>
+                                    <td>@item.orderDate</td>
+                                    <td>@item.expiryDate</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary"
+                                                @*data-bs-toggle="modal"*@
+                                                @*data-bs-target="#addChemicalModal">*@>
+                                            <i class="bi bi-plus-circle me-1"></i> Issue Chemical
+                                        </button>
+                                    </td>
+
+
+
+                                    <td>
+                                        @if (item.safetyLevel == "hazard")
+                                        {
+                                            <span class="btn btn-sm text-white bg-danger">Hazard</span>
+                                        }
+                                        else if (@item.safetyLevel == "medium")
+                                        {
+                                            <span class="btn btn-sm text-dark bg-warning">Medium</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="btn btn-sm text-white bg-success">Safe</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.status == "pending")
+                                        {
+                                            <span class="btn btn-sm text-dark bg-warning">Pending</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="btn btn-sm text-white bg-success">Approve</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Chemical Modal -->
+        <div class="modal fade" id="editChemicalModal" tabindex="-1" aria-labelledby="editChemicalModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="editChemicalForm" method="post" action="/Chemical/Edit">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Chemical</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body row g-3">
+                            <input type="hidden" name="chemicalID" id="editChemicalID" />
+
+                            <div class="col-md-6">
+                                <label>Chemical Name</label>
+                                <input type="text" name="chemicalName" class="form-control" id="editChemicalName" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label>CAS No</label>
+                                <input type="text" name="casNo" class="form-control" id="editCasNo" />
+                            </div>
+                            <div class="col-md-6">
+                                <label>quantity</label>
+                                <input type="text" name="quantity" class="form-control" id="editquantity" />
+                            </div>
+                            <div class="col-md-6">
+                                <label>Supplier</label>
+                                <input type="text" name="Supplier" class="form-control" id="editSupplier" />
+                            </div>
+                            <!-- Add other fields similarly -->
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</main>
+

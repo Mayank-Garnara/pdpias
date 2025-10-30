@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/VieWs/Shared/principal_dashboard.cshtml";
+    ViewBag.Title = "ChemicalDetails";
+}
+
+<main class="main-content" id="mainContent">
+    
+    <section id="current-chemical-section" class="content-section" >
+        <div class="page-header">
+            <h1 class="page-title">Current Chemicals</h1>
+        </div>
+        <div class="card">
+            <div class="card-header">Chemical Stock Overview</div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Chemical Name</th>
+                            <th>Quantity Available (ml/L)</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sodium Hydroxide</td>
+                            <td>180 ml</td>
+                            <td>Low Stock</td>
+                        </tr>
+                        <tr>
+                            <td>Hydrochloric Acid</td>
+                            <td>600 ml</td>
+                            <td>Good</td>
+                        </tr>
+                        <!-- Add more chemical rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>

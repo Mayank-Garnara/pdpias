@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/VieWs/Shared/HeadStore_dashboard.cshtml";
+    ViewBag.Title = "AddStock";
+}
+
+@model  PDPIAS_STORE.Models.headStoreModel.Chemical
+
+<main class="main-content" id="mainContent">
+    <h2>Add New Chemical</h2>
+    <hr />
+
+    @* Html.BeginForm creates an HTML <form> that posts data to the [HttpPost] Create action *@
+    @using (Html.BeginForm("AddChemical", "HeadStore",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.cas_number, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cas_number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cas_number, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @* NOTE: For a file upload for image_structure, you would use a different setup (e.g., <input type="file"> and IFormFile in the Controller). For this basic example, we treat it as a string input. *@
+            <div class="form-group">
+                @Html.LabelFor(model => model.image_structure, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.image_structure, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.image_structure, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.molicular_formula, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.molicular_formula, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.molicular_formula, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.molicular_weight, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.molicular_weight, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.molicular_weight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create Chemical" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</main>
+

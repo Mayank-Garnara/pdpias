@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = "~/VieWs/Shared/principal_dashboard.cshtml";
+    ViewBag.Title = "ChemicalDetails";
+}
+
+
+
+<main class="main-content" id="mainContent">
+
+    <section id="add-stock-section" class="content-section" >
+        <div class="page-header">
+            <h1 class="page-title">Add New Stock</h1>
+        </div>
+        <div class="card">
+            <div class="card-header">Add Chemical to Storage</div>
+            <div class="card-body">
+                <form id="addStockForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Store Manager (Head ID)</label>
+                            <input type="number" class="form-control" name="head_id" required placeholder="Enter Store Manager ID">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Chemical (Chemical ID)</label>
+                            <input type="number" class="form-control" name="chemical_id" required placeholder="Enter Chemical ID">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Measurement Unit (ID)</label>
+                            <input type="number" class="form-control" name="measurement_unit_id" required placeholder="Enter Measurement Unit ID">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="text" class="form-control" name="quantity" required placeholder="e.g., 500 ml">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Manufacture Date</label>
+                            <input type="date" class="form-control" name="manufacture_date" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="date" class="form-control" name="expiry_date" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Molecular Weight</label>
+                            <input type="text" class="form-control" name="molecular_weight" required placeholder="e.g., 18.015 g/mol">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Storage Condition</label>
+                            <input type="text" class="form-control" name="storage_condition" required placeholder="e.g., Cool and Dry Place">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Hazard Level (0-5)</label>
+                            <input type="number" class="form-control" name="hazard_level" min="0" max="5" required placeholder="e.g., 3">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Supplier Company Name</label>
+                            <input type="text" class="form-control" name="supplier_company_name" required placeholder="e.g., Sigma Aldrich">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Chemical Type (ID)</label>
+                            <input type="number" class="form-control" name="chemical_type_id" required placeholder="Enter Chemical Type ID">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Chemical State (ID)</label>
+                            <input type="number" class="form-control" name="chemical_state_id" required placeholder="Enter Chemical State ID">
+                        </div>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-plus-circle me-1"></i> Add Stock
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>

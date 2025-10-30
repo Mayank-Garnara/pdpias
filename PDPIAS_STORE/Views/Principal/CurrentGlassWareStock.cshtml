@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = "~/VieWs/Shared/principal_dashboard.cshtml";
+    ViewBag.Title = "ChemicalDetails";
+}
+<main class="main-content" id="mainContent">
+    <section id="current-glassware-section" class="content-section">
+        <div class="page-header">
+            <h1 class="page-title">Current Glassware Stock</h1>
+        </div>
+        <div class="card">
+            <div class="card-header">Glassware Stock Overview</div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Glassware Name</th>
+                            <th>Quantity Available</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Beaker 250ml</td>
+                            <td>5</td>
+                            <td>Critical</td>
+                        </tr>
+                        <tr>
+                            <td>Test Tubes</td>
+                            <td>40</td>
+                            <td>Good</td>
+                        </tr>
+                        <!-- Add more glassware rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
