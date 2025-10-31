@@ -16,6 +16,19 @@ namespace PDPIAS_management.Controllers
 {
     public class RegistrationController : Controller
     {
+        public RegistrationController()
+        {
+            var list = db.departments.Select(
+                d => new SelectListItem
+                {
+                    Text = d.department_name,
+                    Value = d.Id.ToString()
+                }
+            ).ToList();
+
+            ViewBag.Departments = list;
+        }
+
         db_pdpiasEntities2 db = new db_pdpiasEntities2();
 
         public class DepartmentPasser
