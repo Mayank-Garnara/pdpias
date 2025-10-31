@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7cc00215c684473e99ca24dff0e65498" Name="Diagram1">
+      <Diagram DiagramId="fd026d3e0e894b2a9c8d173c58e5ab20" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="db_pdpiasModel.chemical" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="db_pdpiasModel.chemical_exchange_department" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="db_pdpiasModel.chemical_state" Width="1.5" PointX="9" PointY="21.25" IsExpanded="true" />

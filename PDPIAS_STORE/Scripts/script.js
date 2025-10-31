@@ -69,31 +69,31 @@ showSection("dashboard-section");
 // =============================================
 // Table Enhancements for Mobile
 // =============================================
-function enhanceTables() {
-    const tables = document.querySelectorAll(".table-responsive");
+//function enhanceTables() {
+//    const tables = document.querySelectorAll(".table-responsive");
 
-    tables.forEach(table => {
-        // Add accessibility attributes
-        const tableEl = table.querySelector("table");
-        if (tableEl) {
-            tableEl.setAttribute("role", "grid");
-            tableEl.querySelectorAll("th").forEach(th => th.setAttribute("role", "columnheader"));
-            tableEl.querySelectorAll("td").forEach(td => td.setAttribute("role", "gridcell"));
-        }
+//    tables.forEach(table => {
+//        // Add accessibility attributes
+//        const tableEl = table.querySelector("table");
+//        if (tableEl) {
+//            tableEl.setAttribute("role", "grid");
+//            tableEl.querySelectorAll("th").forEach(th => th.setAttribute("role", "columnheader"));
+//            tableEl.querySelectorAll("td").forEach(td => td.setAttribute("role", "gridcell"));
+//        }
 
-        // Touch event handling for mobile scrolling
-        let startX;
-        table.addEventListener("touchstart", function (e) {
-            startX = e.touches[0].clientX;
-        }, { passive: true });
+//        // Touch event handling for mobile scrolling
+//        let startX;
+//        table.addEventListener("touchstart", function (e) {
+//            startX = e.touches[0].clientX;
+//        }, { passive: true });
 
-        table.addEventListener("touchmove", function (e) {
-            if (Math.abs(e.touches[0].clientX - startX) > 5) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    });
-}
+//        table.addEventListener("touchmove", function (e) {
+//            if (Math.abs(e.touches[0].clientX - startX) > 5) {
+//                e.preventDefault();
+//            }
+//        }, { passive: false });
+//    });
+//}
 
 // =============================================
 // Chart Initialization
@@ -250,12 +250,12 @@ document.getElementById("profileUpload")?.addEventListener("change", function (e
 // =============================================
 document.addEventListener("DOMContentLoaded", function () {
     initCharts();
-    enhanceTables();
+    //enhanceTables();
 
     // Handle window resize
-    let resizeTimer;
-    window.addEventListener("resize", function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(enhanceTables, 250);
-    });
+    //let resizeTimer;
+    //window.addEventListener("resize", function () {
+    //    clearTimeout(resizeTimer);
+    //    resizeTimer = setTimeout(enhanceTables, 250);
+    //});
 });

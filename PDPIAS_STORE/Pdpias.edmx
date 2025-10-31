@@ -1373,7 +1373,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db_pdpiasEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="db_pdpiasEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="chemicals" EntityType="Self.chemical" />
           <EntitySet Name="chemical_exchange_department" EntityType="Self.chemical_exchange_department" />
           <EntitySet Name="chemical_state" EntityType="Self.chemical_state" />
@@ -1515,7 +1515,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db_pdpiasModelStoreContainer" CdmEntityContainer="db_pdpiasEntities1">
+        <EntityContainerMapping StorageEntityContainer="db_pdpiasModelStoreContainer" CdmEntityContainer="db_pdpiasEntities2">
           <EntitySetMapping Name="chemicals">
             <EntityTypeMapping TypeName="db_pdpiasModel.chemical">
               <MappingFragment StoreEntitySet="chemical">

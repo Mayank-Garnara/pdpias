@@ -29,6 +29,7 @@ namespace PDPIAS_STORE
         public string supplier_company_name { get; set; }
         public int chemical_type_id { get; set; }
         public int chemical_state_id { get; set; }
+    
         public virtual chemical chemical { get; set; }
         public virtual chemical_state chemical_state { get; set; }
         public virtual chemical_type chemical_type { get; set; }

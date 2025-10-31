@@ -1,0 +1,156 @@
+﻿:root {
+    --primary-light: #7c3aed;
+    --primary-dark: #6d28d9;
+    --glass-light: rgba(255, 255, 255, 0.95);
+    --glass-dark: rgba(17, 24, 39, 0.9);
+    --chemical-pattern: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L80 50L50 100L20 50L50 0' fill='none' stroke='%237c3aed' stroke-width='2' opacity='0.1'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%237c3aed' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(45deg, #f3e8ffaa, #f0f4ffaa), var(--chemical-pattern), linear-gradient(45deg, #f3e8ff, #f0f4ff);
+    background-size: cover, 100px 100px, cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+    body.dark-theme {
+        background: linear-gradient(45deg, #0f172a, #1e293b), var(--chemical-pattern), linear-gradient(45deg, #0f172a, #1e293b);
+    }
+
+.molecule-bg {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#molecule1 {
+    top: 20%;
+    left: 10%;
+    animation: float 6s infinite;
+}
+
+#molecule2 {
+    bottom: 20%;
+    right: 10%;
+    animation: float 8s infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 90%;
+    max-width: 1200px;
+    margin: 1rem;
+    min-height: 700px;
+    position: relative;
+    z-index: 1;
+}
+
+.illustration-side {
+    background: linear-gradient( 160deg, var(--primary-light), var(--primary-dark) );
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+    .illustration-side::after {
+        content: "⚗️🧪🔬";
+        position: absolute;
+        bottom: -30px;
+        right: -30px;
+        font-size: 8rem;
+        opacity: 0.1;
+        transform: rotate(25deg);
+    }
+
+/* Logo Styling */
+.brand-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    transition: all 0.3s ease;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .brand-logo {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 576px) {
+    .brand-logo {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 1rem;
+    }
+}
+
+.form-control {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+    .form-control:focus {
+        border-color: var(--primary-light);
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+    }
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-light), var(--primary-dark));
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: var(--glass-light);
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .illustration-side {
+        padding: 2rem;
+    }
+}

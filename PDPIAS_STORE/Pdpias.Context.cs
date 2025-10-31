@@ -13,10 +13,10 @@ namespace PDPIAS_STORE
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db_pdpiasEntities1 : DbContext
+    public partial class db_pdpiasEntities2 : DbContext
     {
-        public db_pdpiasEntities1()
-            : base("name=db_pdpiasEntities1")
+        public db_pdpiasEntities2()
+            : base("name=db_pdpiasEntities2")
         {
         }
     

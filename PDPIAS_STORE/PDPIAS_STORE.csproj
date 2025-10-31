@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -54,8 +57,21 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -143,52 +159,58 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="chemical.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="chemical_exchange_department.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="chemical_state.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="chemical_type.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HeadStoreController.cs" />
     <Compile Include="Controllers\LabTechController.cs" />
+    <Compile Include="Controllers\LoginControllers\LoginController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PrincipalController.cs" />
+    <Compile Include="Controllers\RegistrationControllers\RegistrationController.cs" />
+    <Compile Include="Controllers\welcomcontrollers\WelcomeController.cs" />
     <Compile Include="department.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="department_head.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="department_storage.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="department_to_store_request.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
+    <Compile Include="features\BCryptConverter.cs" />
+    <Compile Include="features\SendOtp.cs" />
     <Compile Include="glassware.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="head_chemical_storage.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="lab_technician.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="main_chemical_storage.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="main_glassware_storage.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="measurement_unit.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\headStoreModel\Chemical.cs" />
     <Compile Include="Models\headStoreModel\indexViewModel.cs" />
@@ -198,39 +220,46 @@
     <Compile Include="Models\labTech\glasswareOrder.cs" />
     <Compile Include="Models\labTech\indexViewLtModel.cs" />
     <Compile Include="Models\labTech\notificationModel.cs" />
+    <Compile Include="Models\LoginViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\Persons\DepartmentHeadViewModel.cs" />
+    <Compile Include="Models\Person\DepartmentHeadViewModel.cs" />
+    <Compile Include="Models\Person\HeadStoreManagerViewModel.cs" />
+    <Compile Include="Models\Person\LabTechnicianViewModel.cs" />
+    <Compile Include="Models\Person\ViewModelWrapper.cs" />
     <Compile Include="Models\Pricipal\indexViewModel.cs" />
     <Compile Include="Models\Pricipal\RequestTrackingViewModel.cs" />
     <Compile Include="Models\Pricipal\UserManagementViewModel.cs" />
-    <Compile Include="Pdpias.Context.cs">
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="PDPIAS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Pdpias.Context.tt</DependentUpon>
+      <DependentUpon>PDPIAS.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pdpias.cs">
+    <Compile Include="PDPIAS.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pdpias.Designer.cs">
+    <Compile Include="PDPIAS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Pdpias.edmx</DependentUpon>
+      <DependentUpon>PDPIAS.edmx</DependentUpon>
     </Compile>
     <Compile Include="principal.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="storage_tracker.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="store_manager.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="Table.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
     <Compile Include="user.cs">
-      <DependentUpon>Pdpias.tt</DependentUpon>
+      <DependentUpon>PDPIAS.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +267,11 @@
     <Content Include="App_Data\db_pdpias_log.ldf">
       <DependentUpon>db_pdpias.mdf</DependentUpon>
     </Content>
+    <Content Include="assets\backForAbout.png" />
+    <Content Include="assets\chem1.jpg" />
+    <Content Include="assets\chem2.png" />
+    <Content Include="assets\chem3.jpg" />
+    <Content Include="assets\first.jpg" />
     <Content Include="assets\glasswareImages\appendrof.png" />
     <Content Include="assets\glasswareImages\beaker.jpg" />
     <Content Include="assets\glasswareImages\celinder.png" />
@@ -246,6 +280,81 @@
     <Content Include="assets\glasswareImages\pettryDish.png" />
     <Content Include="assets\glasswareImages\testtube.jpg" />
     <Content Include="assets\glasswareImages\tlc.png" />
+    <Content Include="assets\pdpiaslogo.png" />
+    <Content Include="assets\second.jpg" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PDPIAS_STORE.dll" />
+    <Content Include="bin\PDPIAS_STORE.pdb" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Net.Http.dll" />
+    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -265,15 +374,24 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Pdpias.Context.tt">
+    <Content Include="obj\Debug\PDPIAS_STORE.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PDPIAS_STORE.dll" />
+    <Content Include="obj\Debug\PDPIAS_STORE.pdb" />
+    <Content Include="obj\Debug\TempPE\Model1.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Model1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Model1.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Pdpias.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Pdpias.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Pdpias.Designer.cs.dll" />
+    <Content Include="PDPIAS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Pdpias.edmx</DependentUpon>
-      <LastGenOutput>Pdpias.Context.cs</LastGenOutput>
+      <DependentUpon>PDPIAS.edmx</DependentUpon>
+      <LastGenOutput>PDPIAS.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Pdpias.tt">
+    <Content Include="PDPIAS.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Pdpias.edmx</DependentUpon>
-      <LastGenOutput>Pdpias.cs</LastGenOutput>
+      <DependentUpon>PDPIAS.edmx</DependentUpon>
+      <LastGenOutput>PDPIAS.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -281,12 +399,36 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Pdpias.edmx">
+    <Content Include="bin\PDPIAS_STORE.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Model1.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Model1.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Model1.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Pdpias.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Pdpias.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Pdpias.ssdl" />
+    <Content Include="obj\Debug\PDPIAS_S.4EA9EFD4.Up2Date" />
+    <Content Include="obj\Debug\PDPIAS_STORE.csproj.AssemblyReference.cache" />
+    <Content Include="obj\Debug\PDPIAS_STORE.csproj.CopyComplete" />
+    <Content Include="obj\Debug\PDPIAS_STORE.csproj.CoreCompileInputs.cache" />
+    <Content Include="assets\microscope.json" />
+    <EntityDeploy Include="PDPIAS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Pdpias.Designer.cs</LastGenOutput>
+      <LastGenOutput>PDPIAS.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Pdpias.edmx.diagram">
-      <DependentUpon>Pdpias.edmx</DependentUpon>
+    <Content Include="PDPIAS.edmx.diagram">
+      <DependentUpon>PDPIAS.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\script.js" />
@@ -300,7 +442,39 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="script\registrationJs.js" />
+    <Content Include="script\registration_script.js" />
+    <Content Include="script\script.js" />
+    <Content Include="script\ValidateOtp.js" />
+    <Content Include="script\welcom_script.js" />
+    <Content Include="Style\registrationStyle.css" />
+    <Content Include="Style\registration_style.css" />
+    <Content Include="Style\style.css" />
     <Content Include="Style\StyleSheet1.css" />
+    <Content Include="Style\ValidateOtp.css" />
+    <Content Include="Style\welcome_style.css" />
+    <Content Include="uploads\DepartmentHead\00d5ad3f-bb0f-46ac-968b-1639ebe8e066.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030004437_t0tl252o.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030004644_1h322bol.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030005504_wbdnxxlp.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030010100_qqc2l3ej.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030010445_crm2q3uu.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030011626_abbci3az.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030012121_gx4srmd4.jpg" />
+    <Content Include="uploads\DepartmentHead\20251030102336_md4ays5y.jpg" />
+    <Content Include="uploads\DepartmentHead\8a498812-f717-435d-b021-d974ab9c1b2c.jpg" />
+    <Content Include="uploads\LabTechnician\1fec24e0-1343-41bd-a2a8-c61e347f4c21.png" />
+    <Content Include="uploads\LabTechnician\8fa1f48e-8ebe-499b-b995-c2b902a37677.jpg" />
+    <Content Include="uploads\LabTechnician\c40b7a97-e0a5-410f-aa79-6a62d3f4f160.jpg" />
+    <Content Include="uploads\principal.jpeg" />
+    <Content Include="uploads\StoreManager\3acdc977-bf31-4d52-bcd8-adb85540fb85.jpg" />
+    <Content Include="uploads\StoreManager\47d31161-6aea-47b8-bf09-bc62c46bb8c3.jpg" />
+    <Content Include="uploads\StoreManager\4c520522-c6af-45da-a915-35bd653ddddb.jpg" />
+    <Content Include="uploads\StoreManager\5b061108-9876-4fb8-be02-e380b0c6391c.jpg" />
+    <Content Include="uploads\StoreManager\e04f0836-decf-42ba-bde6-4d0858f095de.jpg" />
+    <Content Include="Views\Registration\registration_page\index.html" />
+    <Content Include="Views\Registration\registration_page\script.js" />
+    <Content Include="Views\Registration\registration_page\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -348,6 +522,14 @@
     <Content Include="Views\HeadStore\Reports.cshtml" />
     <Content Include="Views\HeadStore\Profile.cshtml" />
     <Content Include="Views\HeadStore\AddChemical.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\welcome\welcome.cshtml" />
+    <Content Include="Views\Registration\Registration.cshtml" />
+    <Content Include="Views\Registration\registration_page.zip" />
+    <Content Include="Views\Registration\ValidateOtp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -379,7 +561,10 @@
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\HeadStore\" />
+    <Folder Include="Views\OtpSender\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

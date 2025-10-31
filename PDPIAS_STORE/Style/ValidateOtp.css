@@ -1,0 +1,52 @@
+﻿.registration-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.registration-header {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+.form-control:disabled {
+    background-color: #f8f9fa;
+}
+
+.otp-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.otp-input {
+    text-align: center;
+    font-size: 1.2rem;
+    height: 50px;
+}
+
+#resendOtp {
+    cursor: pointer;
+}
+
+    #resendOtp:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+.countdown {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+}

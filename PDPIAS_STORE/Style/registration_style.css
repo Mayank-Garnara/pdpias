@@ -1,0 +1,283 @@
+﻿:root {
+    --primary: #7c3aed;
+    --primary-dark: #6d28d9;
+    --success: #10b981;
+    --error: #ef4444;
+    --glass: rgba(255, 255, 255, 0.97);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: linear-gradient(45deg, #f5f3ff, #f0f9ff);
+    min-height: 100vh;
+    display: flex;
+    color: #1e293b;
+}
+
+/* Role Selection Panel */
+.role-panel {
+    width: 35%;
+    padding: 2rem;
+    background: var(--glass);
+    border-right: 1px solid rgba(124, 58, 237, 0.1);
+    backdrop-filter: blur(10px);
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.role-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.role-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+    .role-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+    }
+
+    .role-card.active {
+        background: rgba(124, 58, 237, 0.05);
+        border-color: var(--primary);
+    }
+
+/* Form Panel */
+.form-panel {
+    width: 65%;
+    padding: 4rem;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100vh;
+    transition: var(--transition);
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
+}
+
+    .form-panel.active {
+        right: 0;
+    }
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.form-title {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    position: relative;
+}
+
+    .form-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary);
+    }
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+    .input-field:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+    }
+
+.password-strength {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: var(--transition);
+}
+
+/* Buttons */
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+.btn-close {
+    background: none;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+    padding: 0.5rem 1rem;
+}
+
+    .btn-close:hover {
+        background: #f1f5f9;
+    }
+
+/* Loader */
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: rotation 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .role-panel {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .form-panel {
+        width: 100%;
+        padding: 2rem;
+        position: static;
+        transform: translateX(100%);
+    }
+
+        .form-panel.active {
+            transform: translateX(0);
+        }
+}
+
+/* Email with OTP Button - Enhanced */
+.email-with-otp {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.with-otp-btn {
+    padding-right: 120px; /* Space for button inside */
+}
+
+.otp-btn-inside {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.5rem 1rem;
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+    .otp-btn-inside:disabled {
+        background: #cbd5e1;
+        color: #64748b;
+        cursor: not-allowed;
+    }
+
+/* Profile Picture Upload Section */
+.upload-label {
+    display: block;
+    cursor: pointer;
+}
+
+    .upload-label input[type="file"] {
+        display: none;
+    }
+
+.upload-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 2px dashed #cbd5e1;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    color: #94a3b8;
+    transition: var(--transition);
+}
+
+    .upload-preview:hover {
+        border-color: var(--primary);
+        background: rgba(124, 58, 237, 0.05);
+    }
+
+    .upload-preview i {
+        font-size: 2.5rem;
+        color: var(--primary-dark);
+    }

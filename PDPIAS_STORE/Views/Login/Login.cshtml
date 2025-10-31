@@ -1,0 +1,130 @@
+﻿@model PDPIAS_management.Models.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - PDPIAS Chemical Management</title>
+
+    <!-- External Dependencies -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="@(Url.Content("~/style/style.css"))" asp-append-version="true" />
+</head>
+<body class="light-theme">
+    <!-- Toast Container -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+        <div id="loginToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @ViewBag.LoginMessage
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    <!-- Chemical Background Elements -->
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%237c3aed' stroke-width='2' fill='none'/%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%237c3aed' stroke-width='2'/%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%237c3aed' stroke-width='2'/%3E%3C/svg%3E"
+         class="molecule-bg"
+         id="molecule1" />
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,10 90,90 10,90' stroke='%237c3aed' stroke-width='2' fill='none'/%3E%3C/svg%3E"
+         class="molecule-bg"
+         id="molecule2" />
+
+    <button id="theme-toggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="auth-container d-flex">
+        <div class="illustration-side col-md-6 d-none d-md-flex flex-column justify-content-center text-white">
+            <h1 class="display-5 fw-bold mb-4">Welcome to PDPIAS Store!</h1>
+            <p class="lead mb-4 opacity-90">Efficient Chemical Management System</p>
+
+            <!-- Lottie Animation Container -->
+            <div id="lottie-animation" style="height: 300px; width: 100%"></div>
+        </div>
+
+        <div class="col-md-6 p-5 d-flex align-items-center">
+            <div class="w-100">
+                <div class="text-center mb-5">
+                    <!-- PDPias Logo -->
+                    <img src="@(Url.Content("~/assets/pdpiaslogo.png"))"
+                         alt="PDPIAS Chemical Management System"
+                         class="brand-logo" />
+                    <h2 class="h3 mt-3">Chemical Lab Login</h2>
+                    <p class="text-muted">Secure access to chemical inventory</p>
+                </div>
+
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder = "lab@pdpias.com" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input type="password"
+                                   class="form-control"
+                                   name="Password"
+                                   placeholder="••••••••"
+                                   required />
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <label class="form-check-label" for="remember">Don't have an account ?</label>
+                            <a href="@Url.Action("Index", "Registration")" class="text-decoration-none">Register here !</a>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mb-4">
+                        <i class="fas fa-sign-in-alt me-2"></i>
+                        Access Lab Dashboard
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Lottie Player Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+
+    <script src="@(Url.Content("~/script/script.js"))"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
+<!-- Show Toast if TempData Exists -->
+@if (ViewBag.LoginMessage != null)
+{
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var toast = new bootstrap.Toast(document.getElementById('loginToast'));
+            toast.show();
+        });
+    </script>
+}
+
+</html>

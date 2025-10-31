@@ -1,0 +1,610 @@
+@{
+    Layout = null;}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDPias Store - Chemical Inventory Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="~/style/welcome_style.css" />
+</head>
+<body>
+    <!-- Enhanced Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-flask"></i>
+                PDPias Store
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#roles">Roles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link" href="~/Register/">Register</a>
+                    </li>*@
+                    <!-- <li class="nav-item">
+      <a class="nav-link" href="#screenshots">Screenshots</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#guide">User Guide</a>
+    </li> -->
+                    @*<li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a href="~/Login/" class="btn btn-outline-light btn-light rounded-pill px-3 text-purple-custom">
+                            <i></i> Register
+                        </a>
+                    </li>*@
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a href="~/Login/" class="btn btn-outline-light rounded-pill px-3">
+                            <i></i> Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div id="heroCarousel"
+             class="carousel slide carousel-fade"
+             data-bs-ride="carousel"
+             data-bs-interval="5000">
+            <div class="carousel-indicators">
+                <button type="button"
+                        data-bs-target="#heroCarousel"
+                        data-bs-slide-to="0"
+                        class="active"></button>
+                <button type="button"
+                        data-bs-target="#heroCarousel"
+                        data-bs-slide-to="1"></button>
+                <button type="button"
+                        data-bs-target="#heroCarousel"
+                        data-bs-slide-to="2"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active"
+                     style="background-image: url('../../assets/chem2.png')">
+                    <div class="hero-content animate__animated animate__fadeInLeft">
+                        <h2>Manage Chemicals Efficiently</h2>
+                        <p>
+                            Streamline your chemical inventory management with our
+                            comprehensive tracking system that ensures accuracy and saves
+                            time.
+                        </p>
+                        <a href="#features" class="btn btn-hero">Explore Features</a>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item" style="background-image: url('../../assets/chem1.jpg') ">
+                    <div class="hero-content animate__animated animate__fadeInLeft">
+                        <h2>Secure Chemical Handling</h2>
+                        <p>
+                            Ensure safety compliance with our system that tracks handling
+                            procedures and maintains detailed safety records.
+                        </p>
+                        <a href="#about" class="btn btn-hero">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url('../../assets/second.jpg') ">
+                    <div class="hero-content animate__animated animate__fadeInLeft">
+                        <h2>Comprehensive Reporting</h2>
+                        <p>
+                            Generate detailed reports on chemical usage, inventory levels,
+                            and compliance documentation with just a few clicks.
+                        </p>
+                        <a href="#" class="btn btn-hero">View Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about-container">
+            <h2 class="about-heading">About PDPias Store</h2>
+            <div class="about-card">
+                <p class="about-description">
+                    PDPias Store is a comprehensive chemical management platform
+                    designed for educational and research laboratories. Our system
+                    provides centralized control over chemicals, glassware, and lab
+                    inventory with specialized interfaces for lab technicians,
+                    department heads, store managers, and institutional administrators.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h3 class="feature-title">Chemical Tracking</h3>
+                        <p class="feature-desc">
+                            Real-time tracking of chemical inventory with expiry alerts and
+                            safety data
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="feature-title">Compliance</h3>
+                        <p class="feature-desc">
+                            Maintain regulatory compliance with automated documentation
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Reporting</h3>
+                        <p class="feature-desc">
+                            Generate detailed usage reports and analytics
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roles & Responsibilities Section -->
+    <!-- Interactive Roles Section -->
+    <section class="roles-section py-5 position-relative" id="roles">
+        <!-- Animated background elements -->
+        <div class="role-shape role-shape-1"></div>
+        <div class="role-shape role-shape-2"></div>
+
+        <div class="container position-relative">
+            <!-- Section Header with Interactive Filter -->
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title animate__animated animate__fadeInDown">
+                    Role-Based Access Control
+                </h2>
+                <p class="section-subtitle animate__animated animate__fadeIn animate__delay-1s">
+                    Customized interfaces with specific permissions and capabilities
+                </p>
+
+                <div class="role-filter d-flex justify-content-center mb-4 animate__animated animate__fadeIn animate__delay-1s">
+                    <button class="btn btn-filter active" data-filter="all">
+                        All Roles
+                    </button>
+                    <button class="btn btn-filter" data-filter="primary">
+                        Primary Users
+                    </button>
+                    <button class="btn btn-filter" data-filter="admin">
+                        Administrators
+                    </button>
+                    <button class="btn btn-filter" data-filter="exec">
+                        Executives
+                    </button>
+                </div>
+            </div>
+
+            <!-- Role Cards Grid -->
+            <div class="row g-4 role-grid">
+                <!-- Lab Technician Card -->
+                <div class="col-lg-3 col-md-6" data-category="primary">
+                    <div class="role-card h-100">
+                        <div class="role-badge bg-primary">Primary User</div>
+                        <div class="role-icon">
+                            <i class="fas fa-vial"></i>
+                            <div class="icon-circle"></div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="role-title">Lab Technicians</h3>
+                            <div class="role-percentage">
+                                <div class="progress-circle" data-percent="85">
+                                    <svg class="progress-circle-svg" viewBox="0 0 36 36">
+                                        <path class="progress-circle-track"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <path class="progress-circle-fill"
+                                              stroke-dasharray="85, 100"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    </svg>
+                                    <span class="progress-text">85%</span>
+                                </div>
+                                <span class="progress-label">System Usage</span>
+                            </div>
+                            <p class="role-description">
+                                Daily chemical management with full inventory access and
+                                safety compliance tracking
+                            </p>
+                            <div class="role-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">12+</span>
+                                    <span class="stat-label">Daily Tasks</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">100%</span>
+                                    <span class="stat-label">Access Level</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department Head Card -->
+                <div class="col-lg-3 col-md-6" data-category="admin">
+                    <div class="role-card h-100">
+                        <div class="role-badge bg-info">Department Level</div>
+                        <div class="role-icon">
+                            <i class="fas fa-user-tie"></i>
+                            <div class="icon-circle"></div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="role-title">Department Heads</h3>
+                            <div class="role-percentage">
+                                <div class="progress-circle" data-percent="65">
+                                    <svg class="progress-circle-svg" viewBox="0 0 36 36">
+                                        <path class="progress-circle-track"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <path class="progress-circle-fill"
+                                              stroke-dasharray="65, 100"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    </svg>
+                                    <span class="progress-text">65%</span>
+                                </div>
+                                <span class="progress-label">System Usage</span>
+                            </div>
+                            <p class="role-description">
+                                Analytical oversight with approval workflows and
+                                department-level reporting
+                            </p>
+                            <div class="role-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">5+</span>
+                                    <span class="stat-label">Daily Tasks</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">80%</span>
+                                    <span class="stat-label">Access Level</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Store Manager Card -->
+                <div class="col-lg-3 col-md-6" data-category="admin">
+                    <div class="role-card h-100">
+                        <div class="role-badge bg-warning">Administrator</div>
+                        <div class="role-icon">
+                            <i class="fas fa-warehouse"></i>
+                            <div class="icon-circle"></div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="role-title">Store Managers</h3>
+                            <div class="role-percentage">
+                                <div class="progress-circle" data-percent="95">
+                                    <svg class="progress-circle-svg" viewBox="0 0 36 36">
+                                        <path class="progress-circle-track"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <path class="progress-circle-fill"
+                                              stroke-dasharray="95, 100"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    </svg>
+                                    <span class="progress-text">95%</span>
+                                </div>
+                                <span class="progress-label">System Usage</span>
+                            </div>
+                            <p class="role-description">
+                                Complete inventory control with procurement and supplier
+                                management
+                            </p>
+                            <div class="role-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">15+</span>
+                                    <span class="stat-label">Daily Tasks</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">100%</span>
+                                    <span class="stat-label">Access Level</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Institution Head Card -->
+                <div class="col-lg-3 col-md-6" data-category="exec">
+                    <div class="role-card h-100">
+                        <div class="role-badge bg-danger">Executive</div>
+                        <div class="role-icon">
+                            <i class="fas fa-user-shield"></i>
+                            <div class="icon-circle"></div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="role-title">Institution Heads</h3>
+                            <div class="role-percentage">
+                                <div class="progress-circle" data-percent="40">
+                                    <svg class="progress-circle-svg" viewBox="0 0 36 36">
+                                        <path class="progress-circle-track"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <path class="progress-circle-fill"
+                                              stroke-dasharray="40, 100"
+                                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    </svg>
+                                    <span class="progress-text">40%</span>
+                                </div>
+                                <span class="progress-label">System Usage</span>
+                            </div>
+                            <p class="role-description">
+                                High-level compliance monitoring and institutional reporting
+                            </p>
+                            <div class="role-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">3+</span>
+                                    <span class="stat-label">Daily Tasks</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">60%</span>
+                                    <span class="stat-label">Access Level</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Button -->
+           
+        </div>
+    </section>
+
+    <!-- System Features Highlights Section -->
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-intro text-center mb-5">
+                <span class="section-badge">Core Capabilities</span>
+                <h2 class="section-title">Powerful Inventory Management Features</h2>
+                <p class="section-subtitle">
+                    Streamline your lab operations with our comprehensive toolkit
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h3>Chemical Management</h3>
+                    </div>
+                    <div class="feature-body">
+                        <p>
+                            Complete lifecycle tracking for all laboratory chemicals with
+                            automated alerts
+                        </p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Real-time inventory levels</li>
+                            <li><i class="fas fa-check"></i> Expiration monitoring</li>
+                            <li><i class="fas fa-check"></i> Safety data integration</li>
+                        </ul>
+                    </div>
+                    <div class="feature-footer">
+                        <a href="#" class="feature-link">
+                            Learn more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="feature-highlight"></div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card featured">
+                    <div class="feature-badge">Most Popular</div>
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-glass-whiskey"></i>
+                        </div>
+                        <h3>Equipment Tracking</h3>
+                    </div>
+                    <div class="feature-body">
+                        <p>Comprehensive glassware and instrument management system</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Condition monitoring</li>
+                            <li><i class="fas fa-check"></i> Maintenance scheduling</li>
+                            <li><i class="fas fa-check"></i> Calibration records</li>
+                        </ul>
+                    </div>
+                    <div class="feature-footer">
+                        <a href="#" class="feature-link">
+                            Learn more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="feature-highlight"></div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>Audit Logs</h3>
+                    </div>
+                    <div class="feature-body">
+                        <p>Complete transaction history and compliance documentation</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> User activity tracking</li>
+                            <li><i class="fas fa-check"></i> Exportable reports</li>
+                            <li><i class="fas fa-check"></i> Regulatory compliance</li>
+                        </ul>
+                    </div>
+                    <div class="feature-footer">
+                        <a href="#" class="feature-link">
+                            Learn more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="feature-highlight"></div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Hazard Control</h3>
+                    </div>
+                    <div class="feature-body">
+                        <p>
+                            Specialized management for dangerous and controlled substances
+                        </p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Restricted access</li>
+                            <li><i class="fas fa-check"></i> Emergency protocols</li>
+                            <li><i class="fas fa-check"></i> Disposal tracking</li>
+                        </ul>
+                    </div>
+                    <div class="feature-footer">
+                        <a href="#" class="feature-link">
+                            Learn more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="feature-highlight"></div>
+                </div>
+            </div>
+
+            <!-- <div class="section-cta text-center mt-5">
+              <a href="#" class="btn btn-primary btn-lg">
+                <i class="fas fa-rocket me-2"></i> Explore All Features
+              </a>
+              <a href="#" class="btn btn-outline-primary btn-lg ms-3">
+                <i class="fas fa-play-circle me-2"></i> Watch Demo
+              </a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <!-- Simplified Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Contact Info -->
+                <div class="col-lg-6">
+                    <div class="footer-brand mb-4">
+                        <i class="fas fa-flask"></i>
+                        <span>PDPias Store</span>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (123) 456-7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@pdpiasstore.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Lab St, Science City, Country</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="footer-title">Quick Links</h5>
+                            <ul class="footer-links">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#features">Features</a></li>
+                                <li><a href="#roles">Roles</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5 class="footer-title">Support</h5>
+                            <ul class="footer-links">
+                                <li><a href="#guide">User Guide</a></li>
+                                <li><a href="#">Download</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">
+                            &copy; 2023 PDPias Store. All rights reserved.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/script/welcom_script.js"></script>
+</body>
+</html>

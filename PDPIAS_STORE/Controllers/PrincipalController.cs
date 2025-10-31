@@ -11,7 +11,7 @@ namespace PDPIAS_STORE.Controllers
 {
     public class PrincipalController : Controller
     {
-    private db_pdpiasEntities1 db = new db_pdpiasEntities1();
+    private db_pdpiasEntities2 db = new db_pdpiasEntities2();
        
         public ActionResult Index()
         {
