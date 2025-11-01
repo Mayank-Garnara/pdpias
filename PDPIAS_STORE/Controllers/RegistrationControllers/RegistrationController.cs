@@ -243,7 +243,7 @@ namespace PDPIAS_management.Controllers
                                     else
                                     {
                                         // Other DB errors
-                                        ModelState.AddModelError("", "An error occurred while saving data.");
+                                        ModelState.AddModelError("", "An error occurred while saving principalData.");
                                     }
                                     return View("Registration", UserData.LabTechnician);
                                 }
@@ -365,7 +365,7 @@ namespace PDPIAS_management.Controllers
                                         // Other DB errors
                                         ViewBag.Departments = list;
                                         ViewBag.Tab = "DepartmentHead";
-                                        ModelState.AddModelError("DepartmentHead.Email", "An error occurred while saving data.");
+                                        ModelState.AddModelError("DepartmentHead.Email", "An error occurred while saving principalData.");
                                     }
                                     return View("Registration", UserData);
                                 }
@@ -465,7 +465,7 @@ namespace PDPIAS_management.Controllers
                                     else
                                     {
                                         // Other DB errors
-                                        ModelState.AddModelError("", "An error occurred while saving data.");
+                                        ModelState.AddModelError("", "An error occurred while saving principalData.");
                                     }
                                     return View("Registration", UserData.HeadStore);
                                 }

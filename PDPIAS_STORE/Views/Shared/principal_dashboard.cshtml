@@ -46,13 +46,17 @@
                id="userDropdown"
                aria-haspopup="true">
                 <div class="profile-container d-flex">
-                    <img src="https://randomuser.me/api/portraits/men/50.jpg"
+                    <img src="~/uploads/principal.jpg"
                          alt="Profile"
                          class="profile-img"
                          loading="lazy" />
 
                 </div>
-                <span class="profile-name ms-1">Dr. Kavit Bokarvadiya</span>
+                @{ 
+                    var obj = Session["userData"] as principal;
+                }
+
+                <span class="profile-name ms-1">@obj.first_name @obj.last_name</span>
             </a>
             <div class="dropdown">
 
@@ -150,11 +154,27 @@
             </li>
 
             <li class="nav-item">
-                <a href="@Url.Action("UserManagement","Principal")" class="nav-link">
+                <a href="@Url.Action("PendingUsers","Principal")" class="nav-link">
                     <i class="bi bi-people"></i>
-                    <span>User Management</span>
+                    <span>Pending Users</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="@Url.Action("ApprovedUsers","Principal")" class="nav-link">
+                    <i class="bi bi-people"></i>
+                    <span style="color:green">Approved Users</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="@Url.Action("BlockedUsers","Principal")" class="nav-link">
+                    <i class="bi bi-people"></i>
+                    <span style="color:red">Blocked Users</span>
+                </a>
+            </li>
+
+
             <li class="nav-item">
                 <a href="@Url.Action("Reports","Principal")" class="nav-link">
                     <i class="bi bi-clipboard-data"></i>
@@ -237,6 +257,37 @@
                 this.classList.add("active");
             });
         });
+    </script>
+    
+    <script>
+
+
+        function processUser(id, role, action) {
+            var url = "~/Principal/ChangeState";
+
+            const postData = {
+                id: id, // Pass ID as string
+                role: role,
+                status: action
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    
+                },
+                body: JSON.stringify(postData)
+            })
+                .then(data => {
+                    if (data.success) {
+                        alert('User status updated successfully.');
+                        // Reload the current page to refresh the user list
+                        window.location.reload();
+                    }
+            })
+        }
+
     </script>
 
 </body>

@@ -11,13 +11,14 @@ namespace PDPIAS_STORE.Controllers
 {
     public class PrincipalController : Controller
     {
-    private db_pdpiasEntities2 db = new db_pdpiasEntities2();
+        public principal principalData;
+        private db_pdpiasEntities2 _context = new db_pdpiasEntities2();
        
+        
+
         public ActionResult Index()
         {
-            
-            
-                 
+            principalData = Session["userData"] as principal;
 
             IndexViewModel indexViewModel = new IndexViewModel
             {
@@ -86,26 +87,12 @@ namespace PDPIAS_STORE.Controllers
             indexViewModel.DepartmentInvetoeys.Add(dvm);
             indexViewModel.DepartmentInvetoeys.Add(dvm);
             indexViewModel.DepartmentInvetoeys.Add(dvm);
-            
-
-
-
-
-            //indexViewModel.MonthyCharts.Add(monthyChart);
-            //indexViewModel.MonthyCharts.Add(monthyChart);
-            //indexViewModel.MonthyCharts.Add(monthyChart);
-            //indexViewModel.MonthyCharts.Add(monthyChart);
-
-
-
 
             return View(indexViewModel);
         }
 
         public ActionResult ChemicalTracking()
         {
-
-
             return View();
         }
 
@@ -161,32 +148,191 @@ namespace PDPIAS_STORE.Controllers
             return View();
         }
 
-        public ActionResult UserManagement()
+        #region user management
+        public ActionResult PendingUsers()
         {
 
             UserManagementViewModel userManagementViewModel = new UserManagementViewModel();
             userManagementViewModel.AllRequests = new List<AllRequest> ();
 
-            AllRequest r = new AllRequest()
+
+            var labTechRequests = _context.lab_technician
+            .Where(lt => lt.status == 0) // Filter: Database status is 0
+            .Select(lt => new AllRequest
             {
-                Id = 1,
-                Name = "ABCD",
-                Email = "abcd@gmail.com",
-                Role = "HEAD",
-                Department = "ABCD",
-                Stauts = "Active"
+                // Map properties to your AllRequest class
+                Id = lt.Id,
+                Name = lt.first_name + " " + lt.last_name,
+                Email = lt.email,
+                Role = "Lab Technician",
+                Department = lt.department.department_name, 
+                Stauts = "Pending" // Set the C# 'Stauts' property to a descriptive string
+            });
 
-            };
+            // --- 2. Select from store_manager where status = 0 ---
+            var storeManagerRequests = _context.store_manager
+                .Where(sm => sm.status == 0) // Filter: Database status is 0
+                .Select(sm => new AllRequest
+                {
+                    // Map properties to your AllRequest class
+                    Id = sm.Id,
+                    Name = sm.first_name + " " + sm.last_name,
+                    Email = sm.email,
+                    Role = "Store Manager",
+                    Department = "-",
+                    Stauts = "Pending"
+                });
 
-            userManagementViewModel.AllRequests.Add(r);
-            userManagementViewModel.AllRequests.Add(r);
-            userManagementViewModel.AllRequests.Add(r);
-            userManagementViewModel.AllRequests.Add(r);
-            userManagementViewModel.AllRequests.Add(r);
+            // --- 3. Select from department_head where status = 0 ---
+            var deptHeadRequests = _context.department_head
+                .Where(dh => dh.status == 0) // Filter: Database status is 0
+                .Select(dh => new AllRequest
+                {
+                    // Map properties to your AllRequest class
+                    Id = dh.Id,
+                    Name = dh.first_name + " " + dh.last_name,
+                    Email = dh.email,
+                    Role = "Department Head",
+                    Department = dh.department.department_name,
+                    Stauts = "Pending"
+                });
 
-            return View(userManagementViewModel);
+            // --- 4. Combine all the results using Concat() ---
+            var combinedRequests = labTechRequests
+                .Concat(storeManagerRequests)
+                .Concat(deptHeadRequests)
+                .ToList(); // Executes the query
+
+
+            userManagementViewModel.AllRequests.AddRange(combinedRequests);
+
+            return View("UserManagement",userManagementViewModel);
         }
 
+        public ActionResult ApprovedUsers()
+        {
+
+            UserManagementViewModel userManagementViewModel = new UserManagementViewModel();
+            userManagementViewModel.AllRequests = new List<AllRequest>();
+
+
+            var labTechRequests = _context.lab_technician
+            .Where(lt => lt.status == 1)
+            .Select(lt => new AllRequest
+            {
+                
+                Id = lt.Id,
+                Name = lt.first_name + " " + lt.last_name,
+                Email = lt.email,
+                Role = "Lab Technician",
+                Department = lt.department.department_name,
+                Stauts = "Approved" 
+            });
+
+            
+            var storeManagerRequests = _context.store_manager
+                .Where(sm => sm.status == 1) 
+                .Select(sm => new AllRequest
+                {
+                    
+                    Id = sm.Id,
+                    Name = sm.first_name + " " + sm.last_name,
+                    Email = sm.email,
+                    Role = "Store Manager",
+                    Department = "-",
+                    Stauts = "Approved"
+                });
+
+           
+            var deptHeadRequests = _context.department_head
+                .Where(dh => dh.status == 1) 
+                .Select(dh => new AllRequest
+                {
+                    
+                    Id = dh.Id,
+                    Name = dh.first_name + " " + dh.last_name,
+                    Email = dh.email,
+                    Role = "Department Head",
+                    Department = dh.department.department_name,
+                    Stauts = "Approved"
+                });
+
+            
+            var combinedRequests = labTechRequests
+                .Concat(storeManagerRequests)
+                .Concat(deptHeadRequests)
+                .ToList(); 
+
+
+            userManagementViewModel.AllRequests.AddRange(combinedRequests);
+
+            return View("UserManagement",userManagementViewModel);
+        }
+
+        public ActionResult BlockedUsers()
+        {
+
+            UserManagementViewModel userManagementViewModel = new UserManagementViewModel();
+            userManagementViewModel.AllRequests = new List<AllRequest>();
+
+
+            var labTechRequests = _context.lab_technician
+            .Where(lt => lt.status == 2) // Filter: Database status is 0
+            .Select(lt => new AllRequest
+            {
+                // Map properties to your AllRequest class
+                Id = lt.Id,
+                Name = lt.first_name + " " + lt.last_name,
+                Email = lt.email,
+                Role = "Lab Technician",
+                Department = lt.department.department_name,
+                Stauts = "Blocked" // Set the C# 'Stauts' property to a descriptive string
+            });
+
+            // --- 2. Select from store_manager where status = 0 ---
+            var storeManagerRequests = _context.store_manager
+                .Where(sm => sm.status == 2) // Filter: Database status is 0
+                .Select(sm => new AllRequest
+                {
+                    // Map properties to your AllRequest class
+                    Id = sm.Id,
+                    Name = sm.first_name + " " + sm.last_name,
+                    Email = sm.email,
+                    Role = "Store Manager",
+                    Department = "-",
+                    Stauts = "Blocked"
+                });
+
+            // --- 3. Select from department_head where status = 0 ---
+            var deptHeadRequests = _context.department_head
+                .Where(dh => dh.status == 2) // Filter: Database status is 0
+                .Select(dh => new AllRequest
+                {
+                    // Map properties to your AllRequest class
+                    Id = dh.Id,
+                    Name = dh.first_name + " " +dh.last_name,
+                    Email = dh.email,
+                    Role = "Department Head",
+                    Department = dh.department.department_name,
+                    Stauts = "Blocked"
+                });
+
+            // --- 4. Combine all the results using Concat() ---
+            var combinedRequests = labTechRequests
+                .Concat(storeManagerRequests)
+                .Concat(deptHeadRequests)
+                .ToList(); // Executes the query
+
+
+            userManagementViewModel.AllRequests.AddRange(combinedRequests);
+
+            return View("UserManagement",userManagementViewModel);
+        }
+
+
+        
+
+        #endregion
         public ActionResult Reports()
         {
             return View();

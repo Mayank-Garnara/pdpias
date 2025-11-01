@@ -1,6 +1,7 @@
 ﻿using PDPIAS_management.Features;
 using PDPIAS_management.Models;
 using PDPIAS_STORE;
+using PDPIAS_STORE.Models.Pricipal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,6 @@ namespace PDPIAS_management.Controllers
                             {
                                 Session["userData"] = principal;
                                 return RedirectToAction("Index", "Principal");
-                                //redirect user from here to dashboard
                             }
                             else
                             {
@@ -121,7 +121,7 @@ namespace PDPIAS_management.Controllers
             }
             else
             {
-                ViewBag.LoginMessage = "Please enter valid data";
+                ViewBag.LoginMessage = "Please enter valid principalData";
                 return View("Login", loginViewModel);
             }
         }

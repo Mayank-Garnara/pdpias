@@ -7,12 +7,12 @@ namespace PDPIAS_STORE.Models.Pricipal
 {
     public class RequestTrackingViewModel
     {
-           public List<RequestTracking> AllRequests = new List<RequestTracking> ();
+        public List<RequestTracking> AllRequests = new List<RequestTracking>();
 
     }
     public class RequestTracking
     {
-        public int Id{ get; set; }    
+        public int Id { get; set; }
         public string RequestedBy { get; set; }
 
         public string Department { get; set; }
@@ -25,6 +25,6 @@ namespace PDPIAS_STORE.Models.Pricipal
 
         public string Date { get; set; }
 
-        public string Status { get; set; }  
+        public string Status { get; set; }
     }
 }
