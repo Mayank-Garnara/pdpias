@@ -58,7 +58,7 @@ namespace PDPIAS_management.Controllers
                             if (head_store_manager != null && BCryptConverter.Varify(loginViewModel.password, head_store_manager.password))
                             {
                                 Session["userData"] = head_store_manager;
-                                return RedirectToAction("Index","Welcome");
+                                return RedirectToAction("Index","HeadStore");
                                 //redirect user from here to dashboard
                             }
                             else
@@ -75,7 +75,7 @@ namespace PDPIAS_management.Controllers
                             if (department_head != null && BCryptConverter.Varify(loginViewModel.password , department_head.password))
                             {
                                 Session["userData"] = department_head;
-                                return RedirectToAction("Index","Welcome");
+                                return RedirectToAction("Index","DepartmentHead");
                                 //redirect user from here to dashboard
                             }
                             else
